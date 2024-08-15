@@ -1,0 +1,66 @@
+\section{Algorithme de Shor}
+\begin{algorithm}[H]
+    \caption*{\textbf{Algorithme de Shor}}
+    \begin{algorithmic}[1]
+    \REQUIRE Un nombre $N$ composé et positif
+    \ENSURE Un facteur non-trivial de $N$
+    \IF{$N$ est pair}
+        \RETURN 2 
+    \ENDIF
+    \IF{$N$ est une puissance pure, c'est-à-dire si $N = x^y$ pour des entiers $x \geq 1$ et $y \geq 2$,}
+        \RETURN $(x,y)$
+    \ENDIF
+    \STATE Choisir aléatoirement $a$ où $1 < a < N-1$. \IF{pgcd($a,N$) $>$ 1,}
+        \RETURN pgcd($a,N$)
+    \ENDIF
+    \STATE Utiliser la recherche d'ordre pour trouver l'ordre $r$ de $a^r \equiv 1$ modulo $N$.
+    \IF{$r$ est pair et que $a^{\frac{r}{2}} \not\equiv - 1 \text{ mod } N$,}
+        \STATE Calculer pgcd($a^{\frac{r}{2}} \pm 1, N$). 
+        \IF{pgcd($a^{\frac{r}{2}} + 1, N$) et/ou pgcd($a^{\frac{r}{2}} - 1, N$) sont des facteurs de $N$,}
+            \RETURN pgcd($a^{\frac{r}{2}} + 1, N$) et/ou pgcd($a^{\frac{r}{2}} - 1, N$)
+        \ENDIF
+    \ENDIF Revenir à la ligne 7.
+    \end{algorithmic}
+    \end{algorithm}
+
+L'algorithme de Shor est un algorithme quantique qui permet de trouver les facteurs premiers d'un entier $N$ positif et composé \cite{Shor_1997}. La procédure trouve un facteur premier en complexité polynomiale \cite{nielsen00}, ce qui est meilleur que n'importe quel algorithme classique à ce jour. En fait, il s'agit d'un des algorithmes les plus prometteurs en informatique quantique vu sa puissance qui permettrait, en théorie, de briser le chiffrement RSA. Le chiffrement RSA, même s'il est plus complexe que cela, se base justement sur la difficulté de factoriser efficacement des nombres pour chiffrer des informations sensibles. Bref, l'algorithme de Shor peut avoir, si les ordinateurs quantiques se développent suffisamment, un impact considérable dans le domaine de la cryptographie. 
+
+La procédure développée par Peter Shor emploie, entre autres, la recherche d'ordre dont on a parlé à la section 5. Le reste de l'algorithme est classique bien que la recherche d'ordre, qui s'effectue sur un ordinateur quantique, soit le plus gros du travail pour trouver un facteur. 
+
+On se ramène maintenant au pseudocode présenté en début de section (qu'on explique plus en détails dans les compléments). Les deux premiers « \textbf{Si} » de la procédure sont assez évidents. Effectivement, un nombre pair a forcément 2 comme facteur premier et une puissance pure a comme seul facteur $x^y$. Puis, on choisit une valeur aléatoire $a$ qu'on nommera la base. Le troisième « \textbf{Si} » est encore assez simple puisqu'un pgcd supérieur à 1 indique qu'il divise $a$ et $N$, donc qu'il est un facteur de $N$. Autrement, cette étape s'assure que $a$ et $N$ soient copremiers. On arrive ensuite à la recherche d'ordre qui est l'unique section quantique de l'algorithme. On peut démontrer à l'aide de théorèmes que pgcd($a^{\frac{r}{2}} + 1, N$) et/ou pgcd($a^{\frac{r}{2}} - 1, N$) sont des facteurs non-trivaux de $N$ si les conditions sur $r$ et $a^{\frac{r}{2}}$ sont respectées (voir section E dans les compléments). Il se peut que l'algorithme échoue et, dans ce cas, on retourne en arrière pour choisir une nouvelle base. On peut montrer qu'à chaque itération, la probabilité de succès de l'algorithme de Shor est supérieure à $\frac{1}{2}$ (voir lemme A4.12 et théorème A4.13 dans \cite{nielsen00}). On peut maintenant factoriser des nombres!
+
+\vspace{3em}
+\begin{center}
+        \itshape
+        If computers that you build are quantum,
+    
+        Then spies of all factions will want 'em.
+    
+        Our codes will all fail,
+    
+        And they'll read our email,
+        
+        Till we've crypto that's quantum, and daunt 'em.
+
+    \vspace{0.5em}
+    \normalfont
+    \textemdash\ Jennifer et Peter Shor
+\end{center}
+
+\vspace{2em}
+\begin{center}
+        \itshape
+        To read our E-mail, how mean
+
+        of the spies and their quantum machine;
+
+        Be comforted though,
+
+        they do not yet know
+
+        how to factorize twelve or fifteen.
+
+    \vspace{0.5em}
+    \normalfont
+    \textemdash\ Volker Strassen
+\end{center}

@@ -1,0 +1,17 @@
+\renewcommand{\theequation}{A.\arabic{equation}}
+\setcounter{equation}{0}
+\section{Version compilée de l'algorithme de Shor}
+La version compilée de l'algorithme de Shor permet essentiellement de tricher dans le but de factoriser rapidement de très grands nombres. En effet, en se basant sur l'observation que différentes bases $a$ amènent à la mesure de différents ordres $r$ \cite{Smolin_2013}, on peut tricher afin de choisir une base particulière qui donne une petite valeur pour l'ordre ($r=2$ par exemple). Si on sait que l'ordre est petit, on peut grandement réduire la taille et les ressources qu'on utiliserait normalement pour l'algorithme de Shor, et ce à tel point que le circuit quantique ne serve pratiquement à rien. Ainsi, la recherche d'ordre devient extrêment facile et l'algorithme en lui-même est grandement accéléré. Au final, il devient très facile de trouver un facteur même pour de très grands nombres, et ce de manière quasi instantanée. 
+
+Smolin montre qu'il est toujours possible de trouver une base où l'ordre vaut 2 lorsqu'on connaît les facteurs \cite{Smolin_2013}. En fait, connaître les facteurs accélère grandement l'obtention d'une telle base, mais on peut aussi l'avoir par force brute (pour des petits nombres évidemment) si on ne connaît pas a priori les facteurs. Aussi, Smolin indique que la plupart des articles scientifiques qui ont réussi à factoriser des nombres sur un ordinateur quantique utilisaient un truc du genre afin de faciliter la tâche à l'ordinateur quantique \cite{Smolin_2013}. Par exemple, on peut factoriser RSA-768 instantanément grâce à la version compilée de Shor avec la base $a_{\text{RSA-768}}$, ce qui semble totalement fou. Il faut alors faire attention pour ne pas trop vite sauter aux conclusions quand on lit des articles prétendant exécuter le véritable algorithme de Shor sur une machine quantique.
+
+RSA-768 = 12301866845301177551304949583849627207728535695953347921973224521517264005072636575187452
+0219978646938995647494277406384592519255732630345373154826850791702612214291346167042921431160222124
+\newline
+0479274737794080665351419597459856902143413 
+
+$a_{\text{RSA-768}}$ = 102903179330249325800348881837690587526457512
+01785679957159211173833740637809554762657146
+5596555609748771550970845313421247207124155171073766764612501767199553731974973903504534358652759946
+\newline
+6828935082557618400047627481255809299529939

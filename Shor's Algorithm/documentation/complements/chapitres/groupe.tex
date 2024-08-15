@@ -1,0 +1,107 @@
+%Annexe 2 Nielsen & Chuang
+\section{Théorie des groupes}
+Un groupe est l'union d'un ensemble non-vide $G$ avec une certaine opération « $\cdot$ » \cite{key} \cite{nielsen00}. Un groupe doit respecter les propriétés suivantes : 
+
+\begin{enumerate}
+    \item Fermeture : $g_1 \cdot g_2 \in G, \ \forall g_1,g_2 \in G$ 
+    \item Associativité : $(g_1 \cdot g_2) \cdot g_3 = g_1 \cdot (g_2 \cdot g_3), \ \forall g_1,g_2,g_3 \in G$
+    \item Élément neutre : $\exists \ e \in G \ \text{  t.q  } \ g \cdot e = e \cdot g = g, \ \forall g \in G$
+    \item Élément inverse : $\exists \ g^{-1} \in G \ \text{ t.q } \ g \cdot g^{-1} = g^{-1} \cdot g = e, \ \forall g \in G$
+\end{enumerate}
+
+De plus, on dit qu'un groupe est fini si le nombre d'éléments dans $G$ est fini. Justement, on appelle \underline{« l'ordre » de $G$} le nombre d'éléments dans $G$ qu'on symbolise par $|G|$. Aussi, un groupe est « abélien » si, en plus des propriétés de base d'un groupe, ses éléments commutent sous l'opération, c'est-à-dire que $g_1 \cdot g_2 = g_2 \cdot g_1, \ \forall g_1,g_2 \in G$. On définit \underline{« l'ordre »  d'un élément $g \in G$} comme étant le plus petit entier positif $r$ où $g^r = e$. De surcroît, un sous-groupe $H$ de $G$ est un sous-ensemble de $G$ qui forme aussi un groupe sous la même opération. Finalement, pour alléger la notation, on écrira $g_1 g_2$ pour désigner $g_1 \cdot g_2$. 
+
+\textit{- B.1} : $\ \forall g \in G$ où $G$ est un groupe fini, $\exists \ $un entier positif $r$ tel que $g^r = e$.
+
+\begin{quote}
+    Si $g = e$, alors $r = 1$. Sinon, par la propriété de fermeture, à chaque puissance de $g$, on atteint un nouvel élément du groupe. Éventuellement, puisque $G$ est fini, on atteint l'élément neutre à partir d'une certaine puissance de $g$. L'exposant de cette puissance correspond à $r$. $\square$
+\end{quote}
+
+\textit{- B.2} : $1 \leq r \leq |G|$.
+
+\begin{quote}
+    L'ordre vaut 1 quand il s'agit de l'élément neutre. Sinon, pour tout autre élément $g \in G$, en poussant le raisonnement de la précédente démonstration à l'extrême, on peut atteindre tous les autres éléments avant d'arriver finalement à l'élément neutre. Dans ce cas, l'ordre correspond à $|G|$. $\square$
+\end{quote}
+
+\textit{Théorème de Lagrange} : Si $H$ est un sous-groupe d'un groupe fini $G$, alors $|H|$ divise $|G|$.
+
+\begin{quote}
+    On prend un élément $x \not\in H$, mais qui est malgré tout dans $G$. On construit $Hx = \{hx \ | \ h \in H \}$. On voit que $Hx \cap H = \emptyset$ puisque pour que cela ne soit pas le cas, il faudrait par la propriété de fermeture que $h$ et $x$ soient dans $H$, ce qui n'est pas le cas pour $x$. De plus, on construit les éléments de $Hx$ directement depuis $H$, donc forcément $|Hx| = |H|$. Si $Hx \cup H = G$, on a terminé. Sinon, on recommence avec $Hy = \{hy \ | \ h \in H\}$ où $y$ n'est à la fois pas dans $Hx$ et $H$. Ainsi de suite, puisque $G$ est fini, on finit par couvrir tout $G$ avec des sous-ensembles disjoints de même taille que $H$. Donc, $|H|$ divise $|G|$. $\square$ 
+\end{quote}
+
+\textit{- B.3} : L'ordre d'un élément $g \in G$ divise $|G|$.
+
+\begin{quote}
+    Soient $g \in G$ un élément d'ordre $r$ et $A = \{e, g, g^2, ..., g^{r-1}\}$. Il est assez facile de montrer que $A$ forme un sous-groupe de $G$ ayant une taille $r$. Par le théorème de Lagrange, on sait que $|A| = r$ divise $|G|$. $\square$ 
+\end{quote}
+
+On utilise des générateurs pour construire depuis ceux-ci les différents éléments de leur groupe. En d'autres mots, il s'agit d'une liste d'éléments [$g_1, ..., g_l]$ tous dans $G$ qui, lorsqu'on leur applique parfois de manière répétée l'opération du groupe, permet de générer tout le groupe. On écrit $G = \ <g_1, ..., g_l>$ pour spécifier que la liste $[g_1, ..., g_l]$ génère le groupe $G$. Par exemple, à la démonstration B.3, $A =  \ <g>$.
+
+Un groupe $G$ est cyclique s'il existe un élément $a \in G$ tel que $ \forall g \in G, \ g = a^n$ pour un certain entier positif $n$. Dans ce cas, $a$ est l'unique générateur pour $G$ et il va de soi que l'ordre de $a$ vaille $|G|$. Par exemple, le sous-groupe de la démonstration B.3 est cyclique.
+
+\textit{- B.4} : Tout groupe d'ordre premier est cyclique.
+
+\begin{quote}
+    Si l'ordre d'un groupe est un nombre premier $p$, sachant que l'ordre des éléments divise l'ordre du groupe, alors l'ordre des éléments vaut 1 ou $p$. S'il vaut 1, alors il s'agit de l'ordre pour l'élément neutre. Donc, pour tous les autres éléments, l'ordre est $p$. Comme $p$ correspond aussi à la taille du groupe, cela veut dire que, depuis les puissances d'un certain élément $g \not= e$, on peut atteindre tout le monde dans le groupe. Il s'agit de la définition d'un groupe cyclique. $\square$
+\end{quote}
+
+\textit{- B.5} : Tout sous-groupe d'un groupe cyclique est aussi cyclique.
+
+\begin{quote}
+    Soient $G =\ < a >$ un groupe cyclique généré par $a$ et $H$ un sous-groupe de $G$. Si $H = \{e\}$, alors c'est vrai forcément. Sinon, $H$ contient au moins un élément $a^n \not= e$ pour un certain entier positif $n$. Soit $m$ le plus petit entier positif tel que $a^m \in H$. Puisque $m \leq n$, on peut dire qu'il existe $q$ et $r$ tels que $n = qm + r$ où $0 \leq r < m$. Donc, $a^n = a^{qm + r} = (a^{m})^q a^r \implies a^r = (a^m)^{-q} a^n$. Du fait que $a^m \in H$, toutes ses puissances et leurs inverses sont aussi dans $H$. Par fermeture, puisque $(a^m)^{-q}$ et $a^n$ sont dans $H$, $a^r$ l'est aussi. Pourtant, on sait que $0 \leq r < m$ où $m$ est le plus petit entier positif tel que $a^m \in H$. Forcément, il faut que $r = 0$. Donc, $n = qm \implies a^n = (a^m)^q$. Ainsi, n'importe quel élément de $H$ est généré depuis $a^m$, ce qui fait de $H$ un sous-groupe cyclique de $G$. $\square$     
+\end{quote}
+
+\textit{- B.6} : Si $g \in G$ a un ordre fini $r$, alors $g^m = g^n$ ssi $m \equiv n \text{ mod } r$.
+
+\begin{quote}
+    $(\Longrightarrow)$ : Avec un ordre fini, on peut générer un sous-groupe cyclique $\{e, g, g^2, ..., g^{r-1}\}$. Si $m = n$, alors c'est vrai. Sinon, on peut dire sans perte de généralité que $m > n$. Pour que $g^m = g^n$, il faut donc forcément que $m = kr + q$ pour un certain entier $k$ où $0 \leq q < r$. Ainsi, $g^m = g^{kr + q} = g^{kr} g^q = g^q$. De ce fait, $g^m = g^n = g^q$ où $q$ est le résultat modulo $r$ de $m$. Alors, $m \equiv n \text{ mod } r$. $\square$
+
+    $(\Longleftarrow)$ : Puisque $m \equiv n \text{ mod } r$, $g^m = g^{kr + n} = g^{kr}g^n = g^n$. $\square$   
+
+\end{quote}
+
+\textit{- B.7} : Si $G$ est un groupe fini et que $a \in G$ possède un ordre $r$, alors $<a^k> \ =  \ <a^l>$ ssi pgcd($k,r$) = pgcd($l,r$). Il suit que les seuls sous-groupes distincts de $<a>$ soient les sous-groupes $<a^d>$ où $d$ est un diviseur positif de $r$. 
+
+\begin{quote}
+    ($\Longleftarrow$) : Si pgcd($k,r$) = pgcd($l,r$) = $d$, alors pgcd($k,r$) = pgcd($l,r$) = pgcd($d,r$) = $d$. Donc, $d$ divisent $k$, $l$ et $r$. On crée $<a^d> \ = \{e, a^d, a^{2d}, ..., a^{r-d}\}$ qui est un sous-groupe de $<a>$ ayant une taille $\frac{r}{d}$. Puisque $d|k$,  $a^k \in \ <a^d> \ \implies \ <a^k> \ \subseteq \ <a^d>$. De plus, par Bézout, $ks + rt = d \implies a^d = a^{ks+rt} = (a^k)^s(a^r)^t = (a^k)^s \implies a^d \in \ <a^k> \ \implies \ <a^d> \ \subseteq \ <a^k>$. Ainsi, $<a^k> \ = \ <a^d>$. En suivant la même démarche, on peut aussi dire que $<a^l> \ = \ <a^d>$. Au final, $<a^k> \ = \ <a^d> \ = \ <a^l>$. $\square$
+\end{quote}
+
+\begin{quote}
+    ($\Longrightarrow$) : Si $<a^k> \ = \ <a^l>$, alors pgcd($k,r$) = $x$ = pgcd($x,r$) et pgcd($l,r$) = $y$ = pgcd($y,r$). Par la démonstration de l'autre direction de cette preuve, $<a^x> \ = \ <a^k> \ = \ <a^l> \ = \ <a^y>$ où $|<a^x>| = \frac{r}{x}$ et $|<a^y>| = \frac{r}{y}$. Comme forcément $|<a^x>| = |<a^y>|$, on voit que $\frac{r}{x} = \frac{r}{y} \implies x = y$. Au final, pgcd($k,r$) = pgcd($l,r$). $\square$
+\end{quote}
+
+On peut tirer plusieurs choses de la précédente preuve. Premièrement, on comprend que tous les sous-groupes distincts de $<a>$ sont de la forme $<a^d>$ où $d$ est un diviseur positif de $r$. De plus, par construction, l'ordre de $a^d$ correspond à $|<a^d>| = \frac{r}{d} = d^{'}$. Par conséquent, les éléments $a^k \in \ <a>$ où $<a^k> \ = \ <a^d>$ ont aussi le même ordre $d^{'} = \frac{r}{d} = \frac{r}{\text{pgcd}(k,r)}$, c'est-à-dire le même pgcd avec $r$. 
+
+\textit{- B.8} : Si $G$ est un groupe fini et que $a \in G$ possède un ordre $r$, alors le nombre d'éléments dans $<a>$ ayant un ordre $\frac{r}{d} = d^{'}$ où $d,d^{'}$ sont des diviseurs positifs de $r$ correspond à $\phi(d^{'})$.
+
+\begin{quote}
+    On veut connaître le nombre de sous-groupes $<a^k>$ où $1 \leq k \leq r$ qui sont équivalents au sous-groupe $<a^d>$ pour un certain diviseur positif $d$ de $r$. On sait par B.7 que $<a^k> \ = \ <a^d>$ si pgcd($k,r$) = $d \implies d|k,r \implies  <a^k> \ = \ <a^{ld}> \ = \ <a^d>$ pour $1 \leq l \leq \frac{r}{d}$. Donc, on doit chercher parmi les sous-groupes $<a^{ld}>$.
+
+    Ainsi, $a^{ld}$ possède le même ordre que $a^d$, soit $\frac{r}{d}$. Cependant, puisque $a^{ld} \in \ <a^d>$, on sait aussi que l'ordre de $a^{ld}$ correspond à $\frac{\frac{r}{d}}{\text{pgcd}(ld, \frac{r}{d})}$. Alors, $\frac{r}{d} = \frac{\frac{r}{d}}{\text{pgcd}(ld, \frac{r}{d})} \implies $ pgcd($ld, \frac{r}{d}$) = 1 $\implies$ pgcd($l,\frac{r}{d}$) = 1. On compte donc le nombre de valeurs $l$ dans l'intervalle $1 \leq l \leq \frac{r}{d}$ qui respecte cela, ce qui équivaut à $\phi(\frac{r}{d}) = \phi(d^{'})$. $\square$
+\end{quote}
+
+Une autre notion fondamentale en théorie des groupes est le concept d'isomorphisme. Si $G$ forme un groupe avec l'opération * et $H$ forme un groupe avec l'opération \&, un isomorphisme est une bijection $\psi : G \rightarrow H$ respectant $\psi(a*b) = \psi(a) \ \& \ \psi(b) \ \forall a,b \in G$. De plus, il y a une relation inverse $\psi^{-1} : H \rightarrow G$ respectant $\psi^{-1}(c \ \& \ d) = \psi^{-1}(c) * \psi^{-1}(d) \ \forall c,d \in H$. Dans un sens, deux groupes isomorphes sont équivalents, ce qu'on écrit $G \cong H$. Un isomorphisme possède plusieurs propriétés comme, par exemple, le fait que $\psi(a^{k}) = \psi(a)^{k} \ \forall a \in G$ et $k \in \mathbb{Z}$.
+
+\textit{- B.9} : Si $G \cong H$, alors $G$ est cyclique ssi $H$ l'est aussi.
+
+\begin{quote}
+    ($\Longrightarrow$) : On suppose que $G$ est cyclique, c'est-à-dire qu'il existe $g \in G$ tel que $G = \ <g>$. Soit $\psi : G \rightarrow H$ et un élément quelconque $h \in H$. Alors, on sait qu'il existe $x \in G$ tel que $h = \psi(x)$. Puisque $G$ est cyclique, $x = g^n$ pour un certain entier $n \implies \psi(x) = \psi(g^n) = \left(\psi(g)\right)^n \in \ <\psi(g)> \implies H = \ <\psi(g)> \implies H$ est cyclique. $\square$ 
+
+    ($\Longleftarrow$) : On suppose que $H$ est cyclique, c'est-à-dire que $H = \ <h>$. On sait que $h = \psi(g)$ pour un certain $g \in G$. De plus, pour $x \in G$ quelconque, $\psi(x) \in H \implies \psi(x) = h^m$ pour un certain entier $m$. Donc, $\psi(x) = h^m = \left(\psi(g)\right)^m = \psi(g^m) \implies g^m = x \implies x \in \ <g> \implies G = \ <g>$. Ainsi, $G$ est cyclique. $\square$
+\end{quote}
+
+Par ailleurs, un autre aspect important en théorie des groupes est le produit cartésien de plusieurs groupes qu'on écrit $\prod_{i=1}^{n} G_i = G_1 \cross ... \cross G_n = \{(g_1, ..., g_n) \ | \ g_i \in G_i\}$. Le produit cartésien de groupes est aussi un groupe sous l'opération $(g_1, ..., g_n)(g^{'}_1, ..., g^{'}_n) = (g_1g^{'}_1, ..., g_ng^{'}_n)$. Il va de soi que $|G_1 \cross ... \cross G_n| = |G_1| \cdot ... \cdot |G_n|$.
+
+\textit{- B.10} : $\forall (g_1, ..., g_n) \in G_1 \cross ... \cross G_n$, l'ordre de $(g_1, ..., g_n$) est le ppcm de l'ordre de chaque $g_i$. 
+
+\begin{quote}
+    On souhaiterait que $(g_1, ..., g_n)^m = (g_1^m, ..., g_n^m) = (e_{G_1}, ..., e_{G_n})$ où $e_{G_i}$ est l'élément neutre du groupe $G_i$. Ainsi, il faut avoir assez de puissances de chaque élément du tuple pour retrouver l'élément neutre de chaque $G_i$. De plus, l'ordre requiert de trouver le plus petit $m$ où cela se produit. 
+    
+    On rappelle que si $r$ est l'ordre d'un élément $g_i$, alors $g_i^{kr} = \left(g_i^r\right)^k = \left(e\right)^k = e$ pour tout multiple $kr$ de $r$. En prenant le ppcm de l'ordre des $g_i$ du tuple, on sait qu'il s'agit du plus petit multiple de l'ordre de chaque $g_i$ qui permet d'avoir $(e_{G_1}, ..., e_{G_n})$. Ainsi, ce ppcm correspond à l'ordre de $(g_1, ..., g_n)$ dans  $G_1 \cross ... \cross G_n$. $\square$
+\end{quote}
+
+\textit{- B.11} : Si les $G_i$ sont cycliques et que leur ordre pair à pair est copremier, alors $\prod_{i=1}^{n} G_i$ est aussi cyclique.
+
+\begin{quote}
+    Puisque les $G_i$ sont cycliques, $G_1 = \ <g_1>$ pour un certain $g_1 \in G_1$, ..., $G_n = \ <g_n>$ pour un certain $g_n \in G_n$. Par B.10, on sait que l'ordre de $(g_1, ..., g_n)$ correspond au ppcm de l'ordre de chaque $g_i$, soit ppcm($|G_1|, ..., |G_n|$) du fait que les groupes sont cycliques. Pour que $\prod_{i=1}^{n} G_i$ soit aussi cyclique, il faut un élément dont l'ordre est $|G_1| \cdot ... \cdot |G_n| = \prod_{i=1}^{n}|G_i|$. Si les $|G_i|$ sont tous copremiers entre eux, alors ppcm($|G_1|, ..., |G_n|$) = $\prod_{i=1}^{n}|G_i| \implies \prod_{i=1}^{n}G_i = \ <(g_1, ..., g_n)>$. $\square$
+\end{quote}

@@ -1,0 +1,356 @@
+%Annexe 4 Nielsen & Chuang
+\section{Théorie des nombres}
+\subsubsection*{Divisibilité}
+Un entier $d$ divise un autre entier $n$ (qu'on note $d|n$) si et seulement si $n = dk$ pour un certain entier $k$ \cite{hardy75}. Dans ce cas, $d$ est un diviseur/facteur de $n$. Le plus grand commun diviseur entre $a$ et $b$ qu'on écrit pgcd($a,b$) correspond au plus grand entier divisant à la fois $a$ et $b$. Le pgcd est toujours $\geq 1$, car 1 est le plus grand entier qui divise tous les entiers (l'autre étant -1, mais $-1 < 1$). Deux entiers $a$ et $b$ sont copremiers s'ils ne partagent que $\pm 1$ comme facteur commun, c'est-à-dire si leur pgcd vaut 1. Un nombre $p$ est premier s'il est uniquement divisible par 1 et lui-même.
+
+\textit{- C.1} : Si $a|b$ et $b|c$, alors $a|c$.
+
+\begin{quote}
+    $a|b$ ssi $b = ak$, $b|c$ ssi $c = bk^{'} = akk^{'} = aq$. Donc, $a$ est un facteur de $c$, ce qui veut dire que $a|c$. $\square$
+\end{quote}
+
+\textit{- C.2} : Si $d|a$ et $d|b$, alors $d|ax+by$ où $x,y \in \mathbb{Z}$.
+
+\begin{quote}
+    $d|a$ ssi $a = dk$, $d|b$ ssi $b = dk^{'}$. $ax + by = dkx + dk^{'}y = d(kx + k^{'}y)$. Donc, $d$ est un facteur de $ax + by$, ce qui veut dire que $d|ax+by$. $\square$
+\end{quote}
+
+\textit{- C.3} : Si $a,b \geq 1$ et $a|b$, alors $a \leq b$.
+
+\begin{quote}
+    $a|b$ ssi $b = ak$. Puisque $a,b \geq 1$, il faut que $k \geq 1$. Forcément, $a \leq b$. $\square$
+\end{quote}
+
+\textit{- C.4} : Si $a,b \geq 1$, $a|b$ et $b|a$, alors $a = b$.
+
+\begin{quote}
+    Par C.3, on aurait que $a \leq b$ et $b \leq a \implies a = b$. $\square$ 
+\end{quote}
+
+\textit{- Lemme de Gauss} : Pour $a,b,c \in \mathbb{Z}$, si $a|bc$ et que pgcd($a,b$) = 1 ($a$ et $b$ sont copremiers), alors $a|c$.
+
+\begin{quote}
+    Puisque $a|bc$, alors $a$ divise soit $b$, soit $c$ ou les deux. Dans les deux derniers cas, le lemme fonctionne. Dans le cas où $a|b$ uniquement, du fait qu'ils sont copremiers, il faut nécessairement que $a,b = \pm 1$. Ainsi, peu importe la valeur de $c$, $a = \pm 1$ le divise forcément. $\square$
+\end{quote}
+
+\textit{- Théorème fondamental de l'arithmétique} : Pour un entier $a \geq 2$, il existe une factorisation unique de $a$ en nombres premiers, c'est-à-dire une unique représentation $a = p_1^{\alpha_1}...p_n^{\alpha_n}$ où $\{p_j\}$ sont des nombres premiers distincts et $\{\alpha_j\}$ sont des entiers positifs ($\geq 1$).
+
+\begin{quote}
+
+    \textit{Existence} :
+
+    \begin{quote}
+        Pour $a=2$, on dit que $p_1 = 2$ (2 est un nombre premier) et $\alpha_1 = 1$. Ensuite, on suppose qu'il existe une telle factorisation pour $2 \leq a \leq n$ et on regarde si c'est le cas pour $a = n+1$. Si $n+1$ est un nombre premier, alors c'est bon. Sinon, c'est que $n+1$ est un nombre composé ($n+1 = kl$). Forcément, $2 \leq k,l \leq n$. Par l'hypothèse, $k$ et $l$ ont une factorisation en nombres premiers. Donc, $n+1$ est le produit de nombres premiers ce qui lui donne aussi une factorisation en nombres premiers. Au final, par récurrence, tous les nombres $a \geq 2$ ont une factorisation en nombres premiers. $\square$
+    \end{quote}
+
+    \textit{Unicité} : 
+
+    \begin{quote}
+        On suppose qu'il existe deux factorisations en nombres premiers différentes pour un même nombre $a$, c'est-à-dire que $a = p_1^{\alpha_1}...p_n^{\alpha_n} = q_1^{\beta_1}...q_n^{\beta_n}$. Alors, il y a au moins un des $p_i \not\in \{q_i\}$ (ou inversement). Disons qu'il s'agisse de $p_1$. Puisque $p_1|a$, alors $p_1| q_1^{\beta_1}...q_n^{\beta_n}$, ce qui est équivalent à $p_1|q_1(q_1^{\beta_1 - 1}...q_n^{\beta_n})$. $p_1$ et $q_1$ sont des nombres premiers distincts, donc copremiers. Par le lemme de Gauss, $p_1|q_1^{\beta_1 - 1}...q_n^{\beta_n}$, ce qui indique que $p_1$ divise un des $q_i$. Cela n'est possible puisque les $q_i$ sont premiers et différents de $p_1$. En répétant la même idée pour tous les $p_i$, on en déduit que $\{p_i\} = \{q_i\}$, ce qui veut dire en fait que $a = p_1^{\alpha_1}...p_n^{\alpha_n} = p_1^{\beta_1}...p_n^{\beta_n}$. Maintenant, on suppose qu'il y a un $\alpha_i \not= \beta_i$. Dans le cas où $\alpha_i < \beta_i$, $p_2^{\alpha_2}...p_n^{\alpha_n} = p_1^{\beta_1 - \alpha_1}...p_n^{\beta_n}$. Alors, $p_1|p_2^{\alpha_2}...p_n^{\alpha_n}$, ce qui est impossible puisque les $p_i$ sont distincts. Dans le cas où $\alpha_i > \beta_i$, $p_1^{\alpha_1 - \beta_1}...p_n^{\alpha_n} = p_2^{\beta_2}...p_n^{\beta_n}$. Alors, $p_1|p_2^{\beta_2}...p_n^{\beta_n}$, ce qui est impossible puisque les $p_i$ sont distincts. Ainsi, $\{\alpha_i\} = \{\beta_i\}$. $\square$
+    \end{quote}
+
+\end{quote}
+
+\textit{- Théorème de Bézout} : Pour $a,b \in \mathbb{Z}^{*}$ et $x,y \in \mathbb{Z}$, pgcd($a,b$) = $ax+by$.
+
+\begin{quote}
+    Soit $G$ l'ensemble contenant les entiers positifs ($\geq 1$) qui s'écrivent sous la forme $ax + by$ où $a,b \in \mathbb{Z}^{*}$ sont des entiers posés à l'avance et $x,y \in \mathbb{Z}$ des entiers quelconques. Tout d'abord, $G$ n'est pas vide. Effectivement, si $a$ est positif, alors $a \cdot 1 + b \cdot 0 \in G$. Alors, $G$ est un sous-ensemble de $\mathbb{N}^{*}$ et, naturellement, $G$ possède un plus petit élément $d$ tel que $d \leq g \ \forall g \in G$. Puisque $d \in G$, on sait que $d = ax + by$.
+
+    Soient $q,r$ le quotient et le reste de la division $\frac{a}{d}$. Alors, $a = dq + r$ où $0 \leq r < d$. En isolant $r$, on trouve que $r = a - dq = a - (ax + by)q = a(1-xq) + b(yq)$. En supposant $r$ non nul ($0 < r < d$), cela implique que $r \in G$. Cependant, il y a une contradiction du fait que $r < d$ et que $d$ est sensé être le plus petit élément de $G$. Donc, $r = 0$ et $d|a$. On suit le même principe depuis $\frac{b}{d}$ pour dire que $d|b$. Alors, on peut dire que $d \leq$ pgcd($a,b$). De plus, on sait que pgcd($a,b$)$|ax + by = d \implies$ pgcd($a,b$) $\leq d$. Au final, on en conclue forcément que pgcd($a,b$) = $d = ax + by$. $\square$
+\end{quote}
+
+\textit{- C.5} : Si $a|c$, $b|c$ et pgcd($a,b$) = 1, alors $ab|c$.
+
+\begin{quote}
+    On sait que $c = ak$ et que $c = bk^{'}$. De plus, par le théorème de Bézout, $ax + by = 1$. Donc, $cax + cby = c \implies abk^{'}x + abky = c \implies ab(k^{'}x + ky) = c$. On voit que $ab$ est un facteur de $c$, ce qui veut dire que $ab|c$. $\square$ 
+\end{quote}
+
+\textit{- C.6} : Si $c|a$ et $c|b$, alors $c|$pgcd($a,b$).
+
+\begin{quote}
+    Puisque $c|a$ et $c|b$, alors $c|ax+by$. Donc, du fait que pgcd($a,b$) = $ax+by$ par Bézout, $c|$pgcd($a,b$). $\square$
+\end{quote}
+
+\subsubsection*{Arithmétique modulaire}
+La section 1 du document principal sur Shor explique certains concepts de l'arithmétique modulaire qu'on ne répètera pas ici. Dorénavant, on n'écrira pas « $\text{mod } n$ » avec les relations d'équivalence afin d'alléger la notation. Donc, $a \equiv b \text{ mod } n \iff a \equiv b$ pour un certain entier $n$ positif fixe mais qui n'est pas spécifié.
+
+\textit{- C.7} : $a \equiv b$ ssi $n|(a-b)$.
+
+\begin{quote}
+    (\textit{$\Longrightarrow$}) : $a \equiv b \implies a = kn + b \implies kn = a-b \implies n|(a-b)$. $\square$        
+
+    (\textit{$\Longleftarrow$}) : $n|(a-b) \implies a-b = kn \implies a = kn + b \implies a \equiv b$. $\square$        
+\end{quote}
+
+\textit{- C.8} : $a \equiv b \implies b \equiv a$.
+
+\begin{quote}
+    $a \equiv b \implies a = kn + b \implies b = -kn + a = k^{'}n + a \implies b \equiv a$. $\square$
+\end{quote}
+
+\textit{- C.9} : $a \equiv b$ et $b \equiv c \implies a \equiv c$.
+
+\begin{quote}
+    $a \equiv b \implies a = kn + b$, $b \equiv c \implies b = k^{'}n +c$. Donc, $a = kn + k^{'}n + c = (k + k^{'})n + c \implies a \equiv c$. $\square$
+\end{quote}
+
+\textit{- C.10} : $a \equiv b$ et $c \equiv d \implies a+c \equiv b + d$.
+
+\begin{quote}
+    $a \equiv b \implies a = kn + b$, \ $c \equiv d \implies c = k^{'}n + d$. Alors, $a + c = (kn + b) + (k^{'}n + d) = (k + k^{'})n + (b + d) \implies a + c \equiv b + d$. $\square$
+\end{quote}
+
+\textit{- C.11} : $a \equiv b$ et $c \equiv d \implies ac \equiv bd$.
+
+\begin{quote}
+    $ac = (kn + b)(k^{'}n + d) = (kk^{'}n + kd + k^{'}b)n + bd \implies ac \equiv bd$. $\square$
+\end{quote}
+
+On se demande maintenant comment trouver l'inverse multiplicatif modulo $n$ d'un entier $a$. Il s'agit d'une notion plus subtile en arithmétique modulaire, car on cherche une valeur $a^{-1}$ qui respecte $aa^{-1} \equiv 1$. De plus, on ne peut pas dire que $a^{-1} = \frac{1}{a}$, car on travaille avec des entiers.
+
+\textit{- C.12} : Pour $n > 1$, un entier $a$ possède un inverse multiplicatif modulo $n$ ssi pgcd($a,n$) = 1 ($a$ et $n$ sont copremiers). 
+
+\begin{quote}
+    ($\Longrightarrow$) : Si $a$ possède un inverse multiplicatif modulo $n$, alors $aa^{-1} \equiv 1$, c'est-à-dire que $aa^{-1} = kn + 1$. Donc, $aa^{-1} - kn = 1$, ce qui veut dire par le théorème de Bézout que pgcd($a,n$) = 1. $\square$
+\end{quote}
+
+\begin{quote}
+    ($\Longleftarrow$) : Si pgcd($a,n$) = 1, alors $ax + ny = 1$ par le théorème de Bézout. Donc, $(ax+ny) \text{ mod } n = 1 \text{ mod } n$, ce qui implique que $ax \equiv 1 $. On prend alors $x$ comme inverse multiplicatif modulo $n$ pour $a$. $\square$
+\end{quote}
+
+On voit par la précédente démonstration que ce ne sont pas tous les entiers $a$ qui ont un inverse multiplicatif modulo $n$, mais seulement les entiers qui sont copremiers avec $n$. Par conséquent, si $n$ est un nombre premier, il va de soi que tous les entiers dans $\{1, ..., n-1\}$ ont un inverse multiplicatif modulo $n$ du fait qu'ils sont forcément tous copremiers avec $n$.
+
+\textit{- C.13} : Si $b$ et $b^{'}$ sont des inverses multiplicatifs modulo $n$ d'un même entier $a$, alors $b \equiv b^{'}$.
+
+\begin{quote}
+    $b \equiv 1 \cdot b  \implies b \equiv ab^{'}b \implies b \equiv (ab)b^{'}  \implies b \equiv 1 \cdot b^{'} \implies b \equiv b^{'}$. $\square$ 
+\end{quote}
+
+\textit{- C.14} : Soit $a,b \in \mathbb{Z}$ et $r$ le reste de la division entière $\frac{a}{b}$. Si $r\not= 0$, alors pgcd($a,b$) = pgcd($b,r$).
+
+\begin{quote}
+    On peut dire que $r = a - kb$ pour un certain $k$. Donc, puisque pgcd($a,b$) divise forcément $a$ et $b$, il divise aussi $r$ qui est une combinaison linéaire de $a$ et $b$. Puis, comme pgcd($a,b$)$|b$ et pgcd($a,b$)$|r$, on sait par C.6 que pgcd($a,b$)$|$pgcd($b,r$). De plus, pgcd($b,r$) divise forcément $b$ et $r$. Comme $a = kb + r$, pgcd($b,r$) divise $a$. Donc, pgcd($b,r$) divise $b$ et $a$, ce qui veut dire qu'il divise aussi pgcd($a,b$). Au final, pgcd($a,b$)$|$pgcd($b,r$) et pgcd($b,r$)$|$pgcd($a,b$), ce qui signifie que pgdc($a,b$) = pgcd($b,r$). $\square$
+\end{quote}
+
+Depuis cette dernière preuve, on peut concevoir un algorithme (l'algorithme d'Euclide) qui permet de calculer le pgcd entre deux entiers positifs $a$ et $b$. On commence par ordonner $a$ et $b$ de telle sorte que $a > b$. Puis, on divise $a$ par $b$, ce qui donne $a = k_1b + r_1$. Par la précédente preuve, on sait que pgcd($a,b$) = pgcd($b,r_1$). Puis, on divise $b$ par $r_1$, donnant $b = k_2 r_1 + r_2$. Alors, pgcd($a,b$) = pgcd($b,r_1$) = pgcd($r_1, r_2$). On continue le processus jusqu'à un reste de 0, c'est-à-dire quand $r_{m-1} = k_{m+1}r_m$ avec $r_{m+1} = 0$. Alors, pgcd($a,b$) = ... = pgcd($r_{m-1}, r_m$) = $r_m$. Par exemple, l'algorithme d'Euclide permet d'affirmer que pgcd(6825, 1430) = 65.
+
+\begin{equation*}
+    6825 = 4 \cdot 1430 + 1105
+\end{equation*}
+\begin{equation*}
+    1430 = 1 \cdot 1105 + 325
+\end{equation*}
+\begin{equation*}
+    1105 = 3 \cdot 325 + 130
+\end{equation*}
+\begin{equation*}
+    325 = 2 \cdot 130 + 65
+\end{equation*}
+\begin{equation*}
+    130 = 2 \cdot 65 + 0
+\end{equation*}
+
+On peut adapter l'algorithme d'Euclide pour trouver les coefficients $x,y$ du théorème de Bézout. Pour y arriver, on exécute l'algorithme d'Euclide normalement. Puis, depuis l'avant-dernière ligne, on fait des substitutions avec les lignes précédentes. En employant le même exemple que tantôt, on trouve que $x=-9$ et $y =43$.
+
+\begin{equation*}
+    65 = 325 - 2 \cdot 130 = 325 - 2 \cdot (1105 - 3 \cdot 325) = ... = -9 \cdot 6825 + 43 \cdot 1430
+\end{equation*}
+
+De surcroît, en calculant pgcd($a,n$) où $a$ et $n$ sont copremiers grâce l'algorithme d'Euclide puis en trouvant les coefficients du théorème de Bézout comme on vient de le voir, on peut trouver l'inverse multiplicatif modulo $n$ de $a$ (le coefficient pour $a$ sera son inverse). On peut montrer que l'algorithme d'Euclide, la recherche des coefficients $x,y$ et la recherche de l'inverse multiplicatif modulo $n$ ont une complexité polynomiale \cite{nielsen00}.
+
+\textit{- Théorème des restes chinois} : Soient $m_1, ..., m_n$ des entiers positifs tous copremiers entre eux, c'est-à-dire que pgcd($m_i, m_j$) = 1 $\ \forall i \not= j$. Alors, le système d'équations $x \equiv a_1 \text{ mod } m_1, ..., x \equiv a_n \text{ mod } m_n$ a une solution. De plus, deux solutions pour le système d'équations sont équivalentes modulo $M = m_1...m_n$.
+
+\begin{quote}
+    \textit{Existence d'une solution} : 
+    
+    \begin{quote}
+        Soit $M_i = \frac{M}{m_i}$. Alors, pgcd($M_i, m_i$) = 1 du fait que pgcd($m_i, m_j$) = 1 $\ \forall i \not= j$. Ainsi, $M_i$ a un inverse modulo $m_i$ qu'on note $N_i$. Soit $x = \sum_{i}^{}a_iM_iN_i$. On sait que $M_iN_i \equiv 1 \text{ mod } m_i$, car on multiplie un nombre et son inverse modulo $m_i$. De plus, $M_iN_i \equiv 0 \text{ mod } m_j \ \forall i \not= j$, car $m_j$ est un facteur de $M_i$ et, par conséquent, de $M_iN_i$ aussi. Au final, on en conclue que $x \equiv a_i \text{ mod } m_i \ \forall i$, ce qui correspond à une solution pour le système d'équations qu'on cherchait à résoudre. $\square$
+    \end{quote}
+    
+    \textit{Solutions équivalentes} : 
+
+    \begin{quote}
+        Si $x$ et $x^{'}$ sont deux solutions, alors $x-x^{'} \equiv 0 \text{ mod } m_i \ \forall i$. Donc, $m_i|x-x^{'} \ \forall i$ et par C.5 $M|x-x^{'} \implies kM = x-x^{'} \implies x = kM + x^{'} \implies x \equiv x^{'} \text{ mod } M$. $\square$
+    \end{quote}
+
+\end{quote}
+
+Par exemple, on essaie de résoudre le système suivant : 
+
+\begin{equation*}
+    \begin{cases}
+        x \equiv 4 \text{ mod } 13 \\
+        x \equiv 2 \text{ mod } 10
+    \end{cases}
+\end{equation*}
+
+On sait qu'une solution est $x = 4 \cdot 10 \cdot p + 2 \cdot 13 \cdot q = 40p + 26 q$. De plus, on sait que $x \text{ mod } 13 = (40p + 26q) \text{ mod } 13 = 4$ et que $x \text{ mod } 10 = (40p + 26q) \text{ mod } 10 = 2$. En développant les égalités, on trouve que $p=4$ et $q=2$ conviennent. Donc, $x = 40 \cdot 4 + 26 \cdot 2 = 212$. On peut vérifier que 212 satisfait bien le système d'équations et que, par équivalence, $x^{'} = 212 \text{ mod } 13 \cdot 10 = 82$ convient aussi.
+
+
+\textit{- C.15} : Si $p$ est un nombre premier et que $k$ est un entier dans $\{1, ..., p-1\}$, alors $p$ divise $\binom{p}{k}$.
+
+\begin{quote}
+    $\binom{p}{k} = \frac{p!}{k!(p-k)!} \implies \binom{p}{k}k! = \frac{p!}{(p-k)!} = p(p-1)...(p-k+1) \implies p|p(p-1)...(p-k+1) \implies p|\binom{p}{k}k!$. Comme $k\leq p-1$, $p$ ne peut pas diviser $k!$ donc il divise $\binom{p}{k}$. $\square$
+\end{quote}
+
+\textit{Petit théorème de Fermat} : Si $p$ est un nombre premier et $a$ un entier, alors $a^p \equiv a \text{ mod } p$. De plus, si $a$ ne divise pas $p$, alors $a^{p-1} \equiv 1 \text{ mod } p$.
+
+\begin{quote}
+    
+    \textit{Pour les $a \geq 0$} : 
+
+    \begin{quote}
+        Si $a = 0$, alors $0^p = 0 \equiv 0 \text{ mod } p$. Quand $a=1$, $a^p = 1^p \equiv 1 \text{ mod } p$. On suppose que c'est vrai jusqu'à une certaine valeur arbitraire de $a$ et on regarde si c'est aussi vrai pour $a+1$. Par la formule du binôme, $(1 + a)^p = \sum_{k=0}^{p}\binom{p}{k}a^k$. En utilisant la précédente preuve, tous les termes de la somme sauf le premier et le dernier sont divisibles par $p$. Donc, $(1 + a)^p \equiv (\binom{p}{0}a^0 + \binom{p}{p}a^p) \text{ mod } p \equiv (1+a^p) \text{ mod } p$. Par hypothèse, $a^p \equiv a \text{ mod } p$. Alors, $(1+a^p) \text{ mod } p \equiv (1+a) \text{ mod } p$. $\square$
+
+        Si $a$ ne divise pas $p$, alors pgcd($a,p$) = 1 $\implies \exists a^{-1}$. Alors, $a^{p-1} = a^pa^{-1} \equiv aa^{-1} \text{ mod } p \equiv 1 \text{ mod } p$. Cela fonctionne peu importe la valeur de $a$ et n'est pas spécifique aux $a$ positifs. $\square$
+    \end{quote}
+
+    \textit{Pour les $a < 0$} :
+
+    \begin{quote}
+        On sait que $(-a)^p = (-1)^p \cdot a^p$. Dans le cas où $p$ est un nombre premier pair ($p = 2$), alors $(-a)^p = a^p \equiv a \text{ mod } p$ par la démonstration sur les $a$ positifs. Sinon, dans le cas où $p$ est un nombre premier impair, $(-a)^p = -1 \cdot a^p$. Donc, $-1 \cdot a^p \text{ mod } p = (-1 \text{ mod } p)(a^p \text{ mod } p) \text{ mod } p \\ = (p-1)a \text{ mod } p \equiv -a \text{ mod } p$. $\square$
+    \end{quote}
+
+\end{quote}
+
+\subsubsection*{Les ensembles $\mathbb{Z}_n$ et $\mathbb{U}_n$}
+On définit $\mathbb{Z}_n$ comme l'ensemble des valeurs possibles/des équivalences modulo $n$, c'est-à-dire l'ensemble des valeurs entre 0 et $n-1$ \cite{key}. Pour tout entier $x \in \mathbb{Z}$, on lui applique la transformation $x \text{ mod } n$ pour connaître son équivalence dans $\mathbb{Z}_n$. Aussi, on définit $\mathbb{U}_n \subseteq \mathbb{Z}_n$ comme l'ensemble des éléments de $\mathbb{Z}_n$ qui ont un inverse multiplicatif modulo $n$, c'est-à-dire qui sont copremiers avec $n$. Il va de soi que $|\mathbb{Z}_n| = n$.
+
+\textit{- C.16} : Pour $n=ab$ où $a$ et $b$ sont copremiers, $\mathbb{U}_n \cong \mathbb{U}_a \cross \mathbb{U}_b$. Cela s'étend facilement à un plus grand nombre de produits.
+
+\begin{quote}
+    On ne le montrera pas ici, mais il est assez évident que $\mathbb{U}_n$ forme un groupe pour tout $n$ sous la multiplication modulo $n$.
+
+    Soit $x \in \mathbb{U}_n$. On sait que pgcd($x,n$) = pgcd($x, ab$) = 1 $\implies$ pgcd($x,a$) = pgcd($x,b$) = 1. On cherche maintenant à construire $\psi : \mathbb{U}_n \rightarrow \mathbb{U}_a \cross \mathbb{U}_b$. Soit $y = x \text{ mod } a \implies x = ka + y$ pour un certain entier $k$. Par Bézout, pgcd($x,a$) = 1 $\implies xq + ar = 1 \implies (ka + y)q + ar = yq + a(kq+r) = 1 \implies$ pgcd($y,a$) = pgcd($x \text{ mod } a, a$) = 1. Par le même raisonnement, pgcd($x \text{ mod } b, b$) = 1. Donc, $x \text{ mod } a \in \mathbb{U}_a$ et $x \text{ mod } b \in \mathbb{U}_b \implies (x \text{ mod } a, x \text{ mod } b) \in \mathbb{U}_a \cross \mathbb{U}_b$.
+    
+    Ensuite, on suppose que $x_1, x_2 \in \mathbb{U}_n$ soient associés à la même paire dans $\mathbb{U}_a \cross \mathbb{U}_b$. Alors, $x_1 \text{ mod } a = x_2 \text{ mod } a \implies x_1 \equiv x_2 \text{ mod } a$. De plus, $x_1 \text{ mod } b = x_2 \text{ mod } b \implies x_1 \equiv x_2 \text{ mod } b$. On en conclue que $a$ et $b$ divisent $x_1 - x_2$ et on se rappelle que pgcd($a,b$) = 1. Par C.5, $ab|x_1 - x_2 \implies n|x_1 - x_2 \implies ln = x_1 - x_2 \implies x_1 = ln + x_2 \implies x_1 \equiv x_2 \text{ mod } n$. Cependant, comme $x_1, x_2 \in \mathbb{U}_n \implies 0 \leq x_1,x_2 < n$, alors $x_1 \equiv x_2 \text{ mod } n \implies x_1 = x_2$. Au final, $\psi : \mathbb{U}_n \rightarrow \mathbb{U}_a \cross \mathbb{U}_b$ correspond à $x \rightarrow (x \text{ mod } a, x \text{ mod } b)$.
+    
+    Aussi, on veut $\psi^{-1} : \mathbb{U}_a \cross \mathbb{U}_b \rightarrow \mathbb{U}_n$. Soient $g \in \mathbb{U}_a$ et $h \in \mathbb{U}_b$. On cherche $(g,h) \rightarrow x$ pour $x \in \mathbb{U}_n$ quelconque. Donc, il suit que $x \equiv g \text{ mod } a$ et $x \equiv h \text{ mod } b$ dont on sait par le théorème des restes chinois que $x$ existe. De plus, en appliquant le modulo $n$ sur la solution $x$ qu'on aura trouvée, on s'assure que $0 \leq x < n$ et donc la solution trouvée sera dans $\mathbb{U}_n$.
+    
+    Puis, si $(g_1, h_1)$ et $(g_2, h_2)$ pointent vers la même valeur $x \in \mathbb{U}_n$, cela veut dire que $x \equiv g_1 \text{ mod } a$, $x \equiv g_2 \text{ mod } a$,  $x \equiv h_1 \text{ mod } b$ et $x \equiv h_2 \text{ mod } b$. Ainsi, $g_1 \equiv g_2 \text{ mod } a$ et $h_1 \equiv h_2 \text{ mod } b$. Par contre, $0 \leq g_1,g_2 < a$ et $0 \leq h_1,h_2 < b \implies g_1 = g_2$ et $h_1 = h_2$.
+
+    Pour conclure, on voit qu'il y a une une bijection entre $\mathbb{U}_n$ et $\mathbb{U}_a \cross \mathbb{U}_b \implies \mathbb{U}_n \cong \mathbb{U}_a \cross \mathbb{U}_b$. Par ailleurs, cela nous indique que $|\mathbb{U}_n| = |\mathbb{U}_a| \cdot |\mathbb{U}_b|$. $\square$
+\end{quote}
+
+\subsubsection*{Fonction $\phi$ d'Euler}
+La fonction $\phi(n)$ d'Euler permet de connaître le nombre d'entiers positifs plus petits ou égaux à $n$ qui sont copremiers avec $n$ \cite{hardy75}. En d'autres mots, $\phi(n) = |\mathbb{U}_n| \ \forall n$. Par exemple, pour un nombre premier $p$, $\phi(p) = p - 1$, car tous les entiers positifs plus petits que $p$ sont copremiers avec lui. De plus, les seuls entiers positifs plus petits ou égaux à $p^{\alpha}$ qui ne sont pas copremiers avec lui sont les multiples $\{p, 2p, 3p, ..., (p^{\alpha - 1} - 1)p, p^{\alpha - 1}p\}$. Alors, 
+
+\begin{equation*}
+    \phi(p^{\alpha}) = p^{\alpha} - p^{\alpha - 1} = p^{\alpha - 1}(p-1)
+\end{equation*}
+
+où $p^{\alpha}$ est le nombre d'entiers positifs plus petits ou égaux à $p^{\alpha}$ et $p^{\alpha - 1}$ est le nombre d'entiers positifs plus petits ou égaux à $p^{\alpha}$ qui ne sont pas copremiers avec lui. 
+
+\textit{- C.17} : Si $a$ et $b$ sont copremiers, alors $\phi(ab) = \phi(a)\phi(b)$.
+
+\begin{quote}
+    On utilise C.16 pour en arriver à $\phi(ab) = |\mathbb{U}_{ab}| = |\mathbb{U}_a| \cdot |\mathbb{U}_b| = \phi(a)\phi(b)$. $\square$
+\end{quote}
+
+\textit{- C.18} : $\phi(n) = \prod_{j=1}^{k}p_j^{\alpha_j - 1}(p_j - 1) \ \forall n \geq 2$. 
+
+\begin{quote}
+    On démarre depuis la factorisation en nombres premiers de $n$ (qui existe si $n \geq 2$), soit $n = p_1^{\alpha_1}...p_k^{\alpha_k}$. Alors, $\phi(n) = \phi(p_1^{\alpha_1}...p_k^{\alpha_k})$. On remarque que $p_1^{\alpha_1}$ n'a pas de facteurs en commun avec $p_2^{\alpha_2}...p_k^{\alpha_k}$, ce qui amène à conclure que pgcd($p_1^{\alpha_1}, p_2^{\alpha_2}...p_k^{\alpha_k}$) = 1. Donc, il est possible d'affirmer que $\phi(p_1^{\alpha_1}...p_k^{\alpha_k})  = \phi(p_1^{\alpha_1})\phi(p_2^{\alpha_2}...p_k^{\alpha_k})$. On peut répéter le processus pour les autres $p_j^{\alpha_j}$ afin d'en arriver à
+\end{quote}
+
+\begin{equation*}
+    \phi(n) = \prod_{j=1}^{k}\phi(p_j^{\alpha_j}) = \prod_{j=1}^{k}p_j^{\alpha_j - 1} (p_j - 1) \ \square
+\end{equation*}
+
+\textit{- C.19} : $n = \sum_{d|n}^{} \phi(d)$ où la somme se fait sur tous les diviseurs $d$ de $n$ (1 et $n$ inclus).
+
+\begin{quote}
+    Pour $n=1$, $\sum_{d|1}^{}\phi(d) = \phi(1) = 1 = n$. Autrement, pour $n \geq 2$, on commence par montrer que $p^{\alpha} = \sum_{d|p^{\alpha}}^{}\phi(d)$. 
+\end{quote}
+
+\begin{equation*}
+    \sum_{d|p^{\alpha}}^{}\phi(d) = \phi(1) + \phi(p) + \phi(p^2) + ... + \phi(p^{\alpha}) = 1 + \sum_{j = 1}^{\alpha} \phi(p^j) = 1 + \sum_{j = 1}^{\alpha} p^j - p^{j-1} = 1 + p^{\alpha} - p^0 = p^{\alpha}
+\end{equation*}
+
+\begin{quote}
+    Ensuite, on utilise la factorisation en nombres premiers de $n$ pour dire que 
+\end{quote}
+
+\begin{equation*}
+    n = p_1^{\alpha_1}...p_k^{\alpha_k} = \left(\sum_{d_1|p_1^{\alpha_1}}^{}\phi(d_1)\right)...\left(\sum_{d_k|p_k^{\alpha_k}}^{}\phi(d_k)\right) = \sum_{d|n}^{} \phi(d). \ \square
+\end{equation*}
+
+On peut généraliser le petit théorème de Fermat grâce à la fonction $\phi$ d'Euler.
+
+\textit{- Théorème d'Euler} : Si un entier $a$ est copremier avec un entier $n > 0$, alors $a^{\phi(n)} \equiv 1 \text{ mod } n$.
+
+\begin{quote}
+    On montre d'abord que $a^{\phi(p^{\alpha})} \equiv 1 \text{ mod } p^{\alpha}$. Si $\alpha = 1$, alors il s'agit du théorème de Fermat et la relation tient. On suppose que c'est vrai jusqu'à un certain $\alpha \geq 1$ et on regarde si c'est aussi vrai pour $\alpha + 1$.
+\end{quote}
+
+\begin{equation*}
+    a^{\phi(p^{\alpha + 1})} = a^{p^{\alpha}(p-1)} = a^{p \phi(p^{\alpha})} = \left(a^{\phi(p^{\alpha})}\right)^p = \left(kp^{\alpha} + 1\right)^p = \sum_{j=0}^{p}\binom{p}{j}k^jp^{\alpha j} = 1 + \sum_{j=1}^{p}\frac{(p-1)!}{j!(p-j)!}k^j p^{\alpha j + 1}
+\end{equation*}
+
+\begin{equation*}
+    = 1 + \sum_{j=1}^{p}\frac{(p-1)!}{j!(p-j)!}k^jp^{\alpha(j-1)}p^{\alpha + 1}
+\end{equation*}
+
+\begin{quote}
+    Alors, on voit que $p^{\alpha + 1}$ divise tous les termes de la somme. Forcément, $a^{\phi(p^{\alpha + 1})} \equiv 1 \text{ mod } p^{\alpha + 1}$. De plus, avoir un multiple de $\phi(p^\alpha)$ en exposant revient à la même conclusion. Donc, $a^{\phi(n)} = a^{\phi(p_1^{\alpha_1}...p_k^{\alpha_k})} = a^{\phi(p_1^{\alpha_1})...\phi(p_k^{\alpha_k})}$ et cela indique que $\phi(n)$ est un multiple de tous les $\phi(p_j^{\alpha_j})$. De ce fait, $a^{\phi(n)} \equiv 1 \text{ mod } p_j^{\alpha_j} \\ \forall j$. Par la partie sur les solutions équivalentes du théorème des restes chinois, on sait que $a^{\phi(n)} \equiv 1 \text{ mod } p_1^{\alpha_1}...p_k^{\alpha_k} \implies a^{\phi(n)} \equiv 1 \text{ mod } n$. $\square$
+\end{quote}
+
+La fonction $\phi$ d'Euler est aussi très pertinente pour montrer que $\mathbb{U}_{p^{\alpha}}$ est un groupe cyclique \cite{key}.
+
+\textit{- C.20} : Pour $n = p$ un nombre premier impair, $\mathbb{U}_p$ forme un groupe cyclique sous la multiplication modulo $n$.
+
+\begin{quote}
+    On sait que $|\mathbb{U}_p| = \phi(p) = p-1$. Pour montrer que le groupe est cyclique, on cherche au moins un élément dans $\mathbb{U}_p$ d'ordre $p-1$. On sait que les seuls ordres possibles sont les diviseurs positifs $d$ de $p-1$. Pour chaque $d$, on construit $A_d = \{a \in \mathbb{U}_p \ | \ \text{l'orde de $a$ vaut $d$}\}$. Donc, l'union des $A_d$ correspond à $\mathbb{U}_p$, ce qui indique que $|\mathbb{U}_p| = \sum_{d|p-1}|A_d|$. Aussi, par C.19, $|\mathbb{U}_p| = \sum_{d|p-1}\phi(d) \implies \sum_{d|p-1}^{}\left(\phi(d) - |A_d|\right) = 0$.
+    
+    On compare maintenant $\phi(d)$ et $|A_d|$ pour tous les diviseurs $d$. Rien n'empêche que $|A_d| = 0 \implies |A_d| \leq \phi(d)$. Sinon, $|A_d| > 0$ et on choisit un de ses éléments $g$ pour construire $<g> = \{1, g, g^2, ..., g^{d-1}\}$. Par B.8, on sait qu'il y a $\phi(d)$ éléments dans $<g>$ d'ordre $d$. Comme $\sum_{d|p-1}^{} \phi(d) = p-1$, il faut forcément que $|A_d| = \phi(d) \ \forall d \implies |A_d| \leq \phi(d) \ \forall d$. Donc dans tous les cas, $|A_d| \leq \phi(d) \ \forall d$.
+
+    On combine $\sum_{d|p-1}^{}\left(\phi(d) - |A_d|\right) = 0$ et $|A_d| \leq \phi(d) \ \forall d$ pour dire que $|A_d| = \phi(d) \ \forall d$. $p-1$ étant un des diviseurs, $|A_{p-1}| = \phi(p-1) \neq 0 \implies \exists$ au moins un élément de $\mathbb{U}_p$ ayant un ordre $p-1 \implies \mathbb{U}_p$ est cyclique. $\square$
+\end{quote}
+
+\textit{- C.21} : Pour $n = p$ un nombre premier impair, $\mathbb{U}_{p^2}$ est cyclique.
+
+\begin{quote}
+    Soit $a \in \mathbb{U}_p$ où $\mathbb{U}_p = \ <a>$. Cet élément fait aussi partie de $\mathbb{U}_{p^2}$ et possède dans ce groupe un certain ordre $k$. Donc, $|\mathbb{U}_{p^2}| = \phi(p^2) = p(p-1) \implies k|p(p-1)$. Aussi, on sait que $a^k \equiv 1 \text{ mod } p^2$ puisque $k$ correspond à l'ordre de $a$. Alors, $a^k = lp^2 + 1 = (lp)p + 1 = l^{'}p + 1 \implies a^k \equiv 1 \text{ mod } p \implies a^k = 1 \in \mathbb{U}_p \implies p-1 | k$.
+
+    Ainsi, $k|p(p-1) \implies p(p-1) = xk$ et $p-1|k \implies k = y(p-1)$. En combinant ces équations, on a $p(p-1) = xy(p-1) \implies p = xy$. Puisque $p$ est un nombre premier impair, soit $x=1$ et $y = p$ ou $x=p$ et $y=1$. De ce fait, $k$ vaut soit $p-1$ ou $p(p-1)$. Dans le premier cas, $a$ ne peut pas être un générateur pour $\mathbb{U}_{p^2}$, car l'ordre ne correspond pas à $|\mathbb{U}_{p^2}| = p(p-1)$. Dans le second cas, $\mathbb{U}_{p^2} = \ <a>$.
+
+    On doit trouver un autre générateur dans le cas où $\mathbb{U}_{p^2} \neq \ <a>$, c'est-à-dire lorsque l'ordre de $a$ est $p-1$ autant dans $\mathbb{U}_p$ que dans $\mathbb{U}_{p^2}$. Soit $a+p \in \mathbb{U}_{p^2}$ d'ordre $m$. Comme $a+p \equiv a \text{ mod } p$, $\mathbb{U}_p = \ <a> \ = \ <a+p>$ et par les précédentes démarches, on sait que $m = p-1$ ou $m = p(p-1)$. En d'autres mots, $(a+p)^{p-1} \equiv 1 \text{ mod } p^2$ ou $(a+p)^{p(p-1)} \equiv 1 \text{ mod } p^2$.
+\end{quote}
+
+\begin{equation*}
+    (a+p)^{p-1} = \sum_{j=0}^{p-1}\frac{(p-1)!}{j!(p-1-j)!} a^j p^{p-1-j} = \sum_{j=0}^{p-1}\frac{(p-1)!}{j!(p-1-j)!} a^j p^2 p^{p-3-j}
+\end{equation*}
+
+\begin{equation*}
+    = a^{p-1} + (p-1)pa^{p-2} + \sum_{j=0}^{p-3}\frac{(p-1)!}{j!(p-1-j)!} a^j p^2 p^{p-3-j} \implies (a+p)^{p-1} \equiv a^{p-1} - a^{p-2}p \text{ mod } p^2
+\end{equation*}
+
+\begin{equation*}
+    \equiv 1 - a^{p-2}p \text{ mod } p^2 \not\equiv 1 \text{ mod } p^2
+\end{equation*}
+
+\begin{quote}
+    du fait que $p$ ne divise pas $a$. Alors, $p(p-1)$ doit être la valeur de l'ordre $\implies \mathbb{U}_{p^2} = \ <a+p>$. Au final, on choisit $<a>$ ou $<a+p>$ comme générateur selon la valeur de l'ordre de $a$ dans $\mathbb{U}_{p^2}$. Dans tous les cas, $\mathbb{U}_{p^2}$ est cyclique. $\square$
+\end{quote}
+
+\textit{- C.22} : Pour $n = p$ un nombre premier impair et $\alpha \geq 1$, $\mathbb{U}_{p^{\alpha}}$ est cyclique. 
+
+\begin{quote}
+    Soit $\mathbb{U}_{p^2} = \ <b>$ où forcément $p$ ne divise pas $b$. On suppose que $\mathbb{U}_{p^{\alpha}} = \ <b>$ pour un certain entier $\alpha \geq 2$ et on montre que $\mathbb{U}_{p^{\alpha + 1}} = \ <b>$.
+
+    On sait que $|\mathbb{U}_{p^{\alpha + 1}}| = \phi(p^{\alpha + 1}) = p^{\alpha}(p-1)$ et $|\mathbb{U}_{p^{\alpha}}| = \phi(p^{\alpha}) = p^{\alpha - 1}(p-1)$. De plus, $b \in \mathbb{U}_{p^{\alpha + 1}}$ avec un certain ordre $m$ dans ce groupe. Alors, $m|p^{\alpha}(p-1) \implies b^m \equiv 1 \text{ mod } p^{\alpha + 1} \implies b^m \equiv 1 \text{ mod } p^{\alpha} \implies b^m = 1 \in \mathbb{U}_{p^\alpha} \implies p^{\alpha - 1}(p-1) | m$. De manière équivalente à la démonstration C.21, on trouve $m = p^{\alpha - 1}(p-1)$ ou $m = p^\alpha(p-1)$.
+
+    Par hypothèse, $\mathbb{U}_{p^{\alpha - 1}} = \ <b> \ \implies b^{\phi(p^{\alpha - 1})} = b^{p^{\alpha - 2}(p-1)} = 1 \in \mathbb{U}_{p^{\alpha - 1}} \implies b^{p^{\alpha - 2}(p-1)} \equiv 1 \text{ mod } p^{\alpha - 1} \implies b^{p^{\alpha - 2}(p-1)} = tp^{\alpha - 1} + 1$ où $t\geq 1$. Par ailleurs, $\mathbb{U}_{p^\alpha} = \ <b> \ \implies b^{p^{\alpha - 2}(p-1)} \not\equiv 1 \text{ mod } p^{\alpha} \implies b^{p^{\alpha - 2}(p-1)} = tp^{\alpha - 1} + 1$ où $t\geq 1$ et $p$ ne divise pas $t$. On teste maintenant les valeurs possibles pour l'ordre $m$.
+\end{quote}
+
+\begin{equation*}
+    b^{p^{\alpha - 1}(p-1)} = \left(b^{p^{\alpha - 2}(p-1)}\right)^p = \sum_{k=0}^{p}\frac{p!}{k!(p-k)!} t^k p^{k(\alpha-1)} = 1 + tp^{\alpha} + \sum_{k=2}^{p}\frac{p!}{k!(p-k)!}t^k p^{\alpha + 1} p^{\alpha(k-1) - k - 1} 
+\end{equation*}
+
+\begin{equation*}
+    \implies b^{p^{\alpha - 1}(p-1)} = \left(b^{p^{\alpha - 2}(p-1)}\right)^p = \left(1 + tp^{\alpha - 1}\right)^p \equiv 1 + tp^{\alpha} \text{ mod } p^{\alpha + 1} \not\equiv 1 \text{ mod } p^{\alpha + 1}
+\end{equation*}
+
+\begin{quote}
+    parce que $p$ ne divise pas $t$. Ainsi, $m = p^{\alpha}(p-1) \implies \mathbb{U}_{p^{\alpha + 1}} = \ <b>$. Donc, $\mathbb{U}_{p^{\alpha}}$ est cyclique pour $\alpha \geq 2$. Par C.20, $\mathbb{U}_p = \mathbb{U}_{p^1}$ est aussi cyclique. Au final, $\mathbb{U}_{p^{\alpha}}$ est cyclique pour tout $\alpha \geq 1$. $\square$
+\end{quote}

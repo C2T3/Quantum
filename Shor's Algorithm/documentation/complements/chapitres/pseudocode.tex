@@ -1,0 +1,69 @@
+\section{Explication du pseudocode}
+On montre ci-dessous le pseudocode pour l'algorithme de Shor afin, par la suite, d'expliquer chacune des étapes et les moments où l'algorithme peut échouer \cite{nielsen00}.
+
+\begin{algorithm}[H]
+    \caption*{\textbf{Algorithme de Shor}}
+    \begin{algorithmic}[1]
+    \REQUIRE Un nombre $N$ composé et positif
+    \ENSURE Un facteur non-trivial de $N$
+    \IF{$N$ est pair}
+        \RETURN 2 
+    \ENDIF
+    \IF{$N$ est une puissance pure, c'est-à-dire si $N = x^y$ pour des entiers $x \geq 1$ et $y \geq 2$,}
+        \RETURN $(x,y)$
+    \ENDIF
+    \STATE Choisir aléatoirement $a$ où $1 < a < N-1$. \IF{pgcd($a,N$) $>$ 1,}
+        \RETURN pgcd($a,N$)
+    \ENDIF
+    \STATE Utiliser la recherche d'ordre pour trouver l'ordre $r$ de $a^r \equiv 1$ modulo $N$.
+    \IF{$r$ est pair et que $a^{\frac{r}{2}} \not\equiv - 1 \text{ mod } N$,}
+        \STATE Calculer pgcd($a^{\frac{r}{2}} \pm 1, N$). 
+        \IF{pgcd($a^{\frac{r}{2}} + 1, N$) et/ou pgcd($a^{\frac{r}{2}} - 1, N$) sont des facteurs de $N$,}
+            \RETURN pgcd($a^{\frac{r}{2}} + 1, N$) et/ou pgcd($a^{\frac{r}{2}} - 1, N$)
+        \ENDIF
+    \ENDIF Revenir à la ligne 7.
+    \end{algorithmic}
+    \end{algorithm}
+
+\subsubsection*{Lignes 1-2}
+Pour commencer, il n'est pas bête de se demander si $N$ est pair. On peut facilement vérifier si c'est le cas classiquement (regarder la valeur du bit de poids faible) et de là en tirer 2 comme facteur. Si $N$ continue d'être pair, on va à force factoriser une certaine puissance de 2. Ainsi, peu importe si on trouve un facteur ou non grâce à cette étape, on s'assure en temps polynomial que $N$ est impair pour le reste du pseudocode.
+
+\subsubsection*{Lignes 4-5}
+Par la suite, il se peut que $N$ soit une puissance pure, c'est-à-dire que $N = x^y$ avec des entiers $x \geq 1$ et $y \geq 2$. Il existe des algorithmes classiques capables de vérifier cela en temps polynomial. Ainsi, on s'assure que $N$ est un nombre composé de différents nombres premiers impairs.
+
+\subsubsection*{Lignes 7-9}
+La prochaine étape consiste à choisir un nombre $a$ aléatoirement où $1 < a < N-1$. Puis, on calcule le pgcd entre $a$ et $N$ en temps polynomial grâce à l'algorithme d'Euclide. On voit que le choix des bornes pour $a$ est important, car sinon le calcul du pgcd peut donner un facteur trivial (1 ou $N$) qui n'amène aucune progression quant à la factorisation de $N$. Effectivement,
+
+\begin{equation*}
+    \text{pgcd}(1,N) = 1 \ \forall N, \ \text{pgcd}(N,N) = N \ \forall N \text{ et } \text{pgcd}(N-1, N) = 1 \ \forall N 
+\end{equation*}
+
+En prenant $a$ entre 1 et $N-1$, on se donne au moins une chance de trouver un facteur en calculant le pgcd. Ainsi, si pgcd($a,N$) est plus grand que 1, alors il est un facteur de $N$ puisque pgcd($a,N$) divise $N$. Dans le cas où le pgcd vaut 1, on s'assure que $a$ et $N$ soient copremiers.
+
+\subsubsection*{Lignes 11-17}
+Finalement, si les précédentes étapes n'ont permis de factoriser $N$, on utilise la recherche d'ordre quantique et les fractions continues pour résoudre $a^r \equiv 1 \text{ mod } N$. Ainsi, dans le cas où on trouve la bonne valeur pour l'ordre, $a^r - 1 = kN$ pour un certain $k$. En supposant que $r$ est pair, on peut aussi dire que $(a^{\frac{r}{2}} + 1)(a^{\frac{r}{2}} - 1) = kN$ et que $N$ divise l'un ou l'autre des termes entre paranthèses/les deux termes entre parenthèses. Donc, du fait que $N$ est composé, il a un facteur en commun avec $(a^{\frac{r}{2}} + 1)$ et/ou $(a^{\frac{r}{2}} - 1)$ qu'on peut trouver en calculant leur pgcd. 
+
+Cependant, on veut éviter qu'il s'agisse d'un facteur trivial. On observe que 
+
+\begin{equation*}
+    \text{pgcd}(a^{\frac{r}{2}} + 1, N) = \text{pgcd}\left((a^{\frac{r}{2}} + 1) \text{ mod } N, N\right) = \text{pgcd}\left(((a^{\frac{r}{2}} \text{ mod } N) + 1) \text{ mod } N, N\right)
+\end{equation*}
+
+\begin{equation*}
+    \text{pgcd}(a^{\frac{r}{2}} - 1, N) = \text{pgcd}\left((a^{\frac{r}{2}} - 1) \text{ mod } N, N\right) = \text{pgcd}\left(((a^{\frac{r}{2}} \text{ mod } N) + N - 1) \text{ mod } N, N\right)
+\end{equation*}
+
+donnent un facteur trivial dans le cas où $a^{\frac{r}{2}} \equiv \pm 1 \text{ mod } N$. Par contre, $a^{\frac{r}{2}} \equiv 1 \text{ mod } N$ n'est pas possible, car on suppose que $r$ est la bonne valeur de l'ordre pour $a$. Dans le cas restant,
+
+\begin{equation*}
+    \text{pgcd}((N - 1 + 1) \text{ mod } N, N) = \text{pgcd}(0, N) = N
+\end{equation*}
+
+\begin{equation*}
+    \text{pgcd}((N - 1 + N - 1) \text{ mod } N, N) = \text{pgcd}((2N - 2) \text{ mod } N, N) = \text{pgcd}(N-2, N) = 1 \ (\text{$N$ est impair})
+\end{equation*}
+
+Ces équations expliquent les conditions à la ligne 12 du pseudocode et nous donnent une chance de trouver un facteur non-trivial grâce au calcul du pgcd à la ligne 13.
+
+\subsubsection*{Cas où l'algorithme échoue}
+Il existe quelques façons pour qu'une itération de l'algorithme échoue. Cela se produit lors de la partie quantique de l'algorithme. D'abord, il se peut que le circuit de la recherche d'ordre n'est pas permis par D.4 d'avoir la vraie valeur de l'ordre de $a$. De ce fait, le reste du pseudocode ne peut pas marcher parce qu'on se base justement sur la supposition qu'on a obtenu le bon ordre. De plus, si les deux conditions de la ligne 12 ne sont pas respectées, le reste du pseudocode ne fonctionnera pas comme on vient de le voir mathématiquement. Peu importe le cas où l'algorithme échoue, le fait de prendre une autre valeur $a$ lui donne la possibilité de ne pas tomber dans ces cas d'échecs lors de la prochaine itération. On ne le montre pas ici par manque de temps, mais la probabilité de succès à chaque itération est plus grande que $\frac{1}{2}$ \cite{nielsen00}.

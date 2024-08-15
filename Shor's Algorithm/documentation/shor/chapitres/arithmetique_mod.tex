@@ -1,0 +1,73 @@
+\section{Arithmétique modulaire} 
+L'arithmétique modulaire est souvent décrite comme étant l'arithmétique des restes \cite{10.5555/31026}. Dans cette arithmétique, on utilise les entiers avec le modulo comme opération principale. De manière générale, on écrit $x \text{ mod } N$ pour désigner cette opération où $N \geq 1$. Si $x$ est positif, le modulo consiste à soustraire $N$ de $x$ autant de fois que nécessaire pour atteindre un nombre entre 0 et $N-1$. Dans le cas où $x$ est négatif, on suit la même procédure mais en additionnant au lieu de soustraire. De plus, l'opération modulo produit un résultat qui est cyclique. Par exemple, 1 mod 3 = 1, 2 mod 3 = 2, 3 mod 3 = 0, 4 mod 3 = 1, 5 mod 3 = 2, 6 mod 3 = 0, etc... 
+
+Par ailleurs, cette arithmétique fait appel au concept de congruence désignant une équivalence qu'on représente par le symbole $\equiv$. Par exemple, on sait que 7 mod 3 = 1. De manière équivalente, on peut écrire 7 $\equiv$ 1 mod 3  parce que le reste de 7 vaut 1 quand il s'agit du modulo 3. On dit alors que « 7 est congru à 1 mod 3 ». En d'autres mots, $x \equiv y \text{ mod } N \iff x = k\cdot N + y$ pour un certain entier $k$.
+
+Il existe quelques identités reliées à l'arithmétique modulaire qu'on utilisera souvent, dont la dernière qu'on désignera par « exponentiation modulaire »: 
+
+\begin{equation}
+    (x + y) \text{ mod } N = ((x \text{ mod } N) + (y \text{ mod } N)) \text{ mod } N
+\end{equation}
+
+\begin{equation}
+    (x\cdot y) \text{ mod } N = ((x \text{ mod } N) \cdot (y \text{ mod } N)) \text{ mod } N
+\end{equation}
+
+\begin{equation}
+    (x^n) \text{ mod } N = \underbrace{(x ...(x(x \text{ mod } N) \text{ mod } N) ...) \text{ mod } N}_\text{n \text{fois}} 
+\end{equation}
+
+Pour le modulo, la notion d'inverse multiplicatif est plus subtile. À proprement parler, il n'existe pas d'opération inverse comme la division le serait pour la multiplication sur les nombres réels. En fait, pour un entier $x$ quelconque, on s'attend pour la multiplication modulo $N$ à ce que $x\cdot x^{-1}$ $ \equiv 1$ mod $N$. Attention, $x^{-1} \neq \frac{1}{x}$, car on travaille sur les entiers. Il se trouve que l'inverse $x^{-1}$ existe si et seulement si $x$ et $N$ sont copremiers, c'est-à-dire si pgcd($x ,N$) = 1. De plus, on peut trouver cet inverse en temps polynomial s'il existe. La section C du document complémentaire explique plus en profondeur des concepts clés de l'arithmétique modulaire.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Soit $G_N$ l'ensemble des entiers positifs strictement plus petit que $N$ et qui sont copremiers avec $N$ ($x \in G_n$ \text{tel que} pcdg($x,N$)$ =1$). On souhaite montrer qu'il s'agit d'un groupe sous la multiplication modulo $N$.
+% \subsection{Identités importantes}
+% \begin{enumerate}
+%     \item pgcd($a,N$) = 1 et pgcd($b,N$) = 1 $\implies$ pgcd($ab,N$) = 1.
+%     \par Soit $a,b \in G_n$. Donc, pgcd($a,N$) = pgcd($b,N$) = $1$. Grâce au lemme de Bézout: \begin{equation*}
+%         \text{pgcd}(a,N) = \text{pgcd}(b,N) = 1 \implies aw+Nx=1 , by+Nz = 1 
+%     \end{equation*}
+%     \begin{equation*}
+%         \implies (aw+Nx)(by+Nz) = abwy + aNwz + bNxy + N^2xz = ab(wy) + N(awz + bxy + Nxz) = abk + Nl = 1 
+%     \end{equation*} 
+%     \begin{equation*}
+%         \implies pgcd(ab,N) = 1
+%     \end{equation*}
+%     \item pgcd($a,b$) = pgcd($a$ mod $b$, $b$).
+%     \par Soit $d_1 =$ pgcd($a,b$). Alors, $d_1$ divise $a$ et $b$. On sait que $a$ mod $b$ = $a - qb$ pour un certain entier $q$. Donc, $d_1$ divise aussi $a$ mod $b$. Comme $d_1$ divise $a$ mod $b$ et $b$, $d_1$ divise pgcd($a$ mod $b$, $b$) (propriété du pgcd).
+%     \par Soit $d_2$ = pgcd($a$ mod $b$, $b$). Alors, $d_2$ divise $a$ mod $b$ et $b$. Donc, $d_2$ divise $a-qb$ pour un certain entier $q$ et $d_2$ divise aussi un multiple $kb$ de $b$. Ainsi, $d_2$ divise $kb + (a-kb) = a$. Au final, comme $d_2$ divise $a$ et $b$, $d_2$ divise aussi pgcd($a,b$).
+%     \par On vient de montrer que le pgcd($a,b$) divise le pgcd($a$ mod $b$, $b$) et que le pgcd($a$ mod $b$, $b$) divise le pgcd($a,b$). Donc, pgcd($a,b$) =  pgcd($a$ mod $b$, $b$).
+% \end{enumerate}
+
+% \subsection{$G_n$ est un groupe sous la multiplication modulo $N$}
+% Pour montrer que $G_n$ est un groupe sous la multiplication modulo $N$, on doit montrer l'associativité, l'existence d'un élément neutre et l'existence d'un inverse pour chaque élément.
+% \begin{enumerate}
+%     \item Associativité : ($a\cdot b$ mod $N$) $\cdot \ c$ mod $N$ = $a \ \cdot $ ($b\cdot c$ mod $N$) mod $N$.
+%     \par ...
+% \end{enumerate}
+
+
+% On sait maintenant que $G_N$ est un groupe fini sous la multiplication modulo $N$. Les éléments $g$ d'un groupe sont caractérisés par leur ordre, c'est-à-dire le plus petit entier $k$ tel que $g^k \equiv 1$ mod $N$. L'ordre d'un groupe correspond quant à lui au cardinal du groupe. On peut montrer par le théorème de Lagrange que l'ordre de chaque élément est un diviseur de l'ordre du groupe. Si $N$ est un nombre premier $p$, l'ordre du groupe $G_p$ vaut forcément $p-1$. Comme $p-1$ est un multiple de l'ordre de chaque élément dans $G_p$, alors $a^{p-1} \equiv 1$ mod $N$. Il s'agit du petit théorème de Fermat.

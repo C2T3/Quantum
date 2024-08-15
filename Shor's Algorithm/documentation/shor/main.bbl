@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{10.5555/31026}
+N.~Koblitz, {\em A course in number theory and cryptography}.
+\newblock Berlin, Heidelberg: Springer-Verlag, 1987.
+
+\bibitem{stein2011fourier}
+E.~Stein and R.~Shakarchi, {\em Fourier Analysis: An Introduction}.
+\newblock Princeton lectures in analysis, Princeton University Press, 2011.
+
+\bibitem{nielsen00}
+M.~A. Nielsen and I.~L. Chuang, {\em Quantum Computation and Quantum
+  Information}.
+\newblock Cambridge University Press, 2000.
+
+\bibitem{Parker_2000}
+S.~Parker and M.~B. Plenio, ``Efficient factorization with a single pure qubit
+  and<mml:math xmlns:mml="http://www.w3.org/1998/math/mathml"
+  display="inline"><mml:mi>log</mml:mi><mml:mi
+  mathvariant="italic">n</mml:mi></mml:math>mixed qubits,'' {\em Physical
+  Review Letters}, vol.~85, p.~3049–3052, Oct. 2000.
+
+\bibitem{draper2000additionquantumcomputer}
+T.~G. Draper, ``Addition on a quantum computer,'' 2000.
+
+\bibitem{beauregard2003circuitshorsalgorithmusing}
+S.~Beauregard, ``Circuit for shor's algorithm using 2n+3 qubits,'' 2003.
+
+\bibitem{pavlidis2013fastquantummodularexponentiation}
+A.~Pavlidis and D.~Gizopoulos, ``Fast quantum modular exponentiation
+  architecture for shor's factorization algorithm,'' 2013.
+
+\bibitem{Shor_1997}
+P.~W. Shor, ``Polynomial-time algorithms for prime factorization and discrete
+  logarithms on a quantum computer,'' {\em SIAM Journal on Computing}, vol.~26,
+  p.~1484–1509, Oct. 1997.
+
+\end{thebibliography}

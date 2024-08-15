@@ -1,0 +1,20 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{Avant-propos}{}{section*.2}%
+\contentsline {section}{\numberline {1}Arithmétique modulaire}{1}{section.1}%
+\contentsline {section}{\numberline {2}Transformée de Fourier discrète (DFT)}{1}{section.2}%
+\contentsline {section}{\numberline {3}Transformée de Fourier quantique (QFT)}{2}{section.3}%
+\contentsline {section}{\numberline {4}Estimation de phase quantique (QPE)}{4}{section.4}%
+\contentsline {section}{\numberline {5}Problème de la recherche d'ordre}{6}{section.5}%
+\contentsline {section}{\numberline {6}Additionneurs quantiques de Draper}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Additionneur $\Phi $ADD$_a$}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Additionneur Q$\Phi $ADD}{9}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}$\Phi $ADD$_a$$^\dag $ et Q$\Phi $ADD$^\dag $}{9}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Multiplieur modulaire quantique de Pavlidis}{10}{section.7}%
+\contentsline {section}{\numberline {8}Multiplieur modulaire quantique de Beauregard}{10}{section.8}%
+\contentsline {subsection}{\numberline {8.1}C$\Phi $ADD$_a$ et CC$\Phi $ADD$_a$}{10}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Additionneur modulaire CC$\Phi $ADD$_a$MOD$_N$}{11}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Multipieur modulaire C$\Phi $MULT$_a$MOD$_N$}{12}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}$CU_a$}{13}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Algorithme de Shor}{13}{section.9}%
+\contentsline {section}{Remerciements}{15}{section*.17}%
+\contentsline {section}{R\'ef\'erences}{16}{section*.18}%

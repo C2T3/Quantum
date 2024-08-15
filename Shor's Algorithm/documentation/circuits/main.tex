@@ -1,0 +1,260 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usetikzlibrary{quantikz2}
+\usepackage[landscape]{geometry}
+\usepackage{amssymb}
+
+\newgeometry{
+    top = 1mm,
+    bottom = 1mm,
+    outer = 1mm,
+    inner = 1mm,
+}
+
+\title{Quantum diagram}
+\author{Derek Courchesne}
+\date{March 2024}
+
+\begin{document}
+
+% \begin{quantikz}
+% \lstick{\ket{0}} & \gate[3]{U(x_2)} & \gate[3]{U^{\dagger}(x_1)} & \meter{} \\
+% \lstick{\ket{0}} & & & \meter{} \\
+% \lstick{\ket{0}} & & & \meter{} \\
+% \end{quantikz}
+
+%QFT
+% \begin{quantikz}
+% \lstick{\ket{j_0}} & & & \ctrl{2} & & \ctrl{1} & \gate[1]{H} & \rstick{\ket{\phi_0(j)}}\\
+% \lstick{\ket{j_1}} & & \ctrl{1} & & \gate[1]{H} & \gate[1]{R_2} & &  \rstick{\ket{\phi_1(j)}}\\
+% \lstick{\ket{j_2}} & \gate[1]{H} & \gate[1]{R_2} & \gate[1]{R_3} & & & & \rstick{\ket{\phi_2(j)}}\\
+% \end{quantikz}
+
+% QPE de base
+\begin{quantikz}
+    \lstick{\ket{0}} & \gate[1]{H} & & & \ctrl{3} & \gate[3]{\text{QFT}^\dag} & \meter{}\\
+    \lstick{\ket{0}} & \gate[1]{H} & & \ctrl{2} & &  &\meter{}  \\
+    \lstick{\ket{0}} & \gate[1]{H} & \ctrl{1} & &&& \meter{} \\
+    \lstick{\ket{1}} & & \gate[1]{U_a^{2^0}} & \gate[1]{U_a^{2^1}} & \gate[1]{U_a^{2^2}} & & 
+    \end{quantikz}
+
+%QPE one qubit trick
+% \begin{quantikz}
+% \lstick{\ket{0}} & \gate[1]{H} & & & \ctrl{3} & \gate[1]{H} & \ctrl{1} & &\ctrl{2} &  & & \meter{} & \rstick{\ket{\theta_0}}\\
+% \lstick{\ket{0}} & \gate[1]{H} & & \ctrl{2} & & & \gate[1]{R_2^\dag} & \gate[1]{H}  & & \ctrl{1} & & \meter{} & \rstick{\ket{\theta_1}}\\
+% \lstick{\ket{0}} & \gate[1]{H} & \ctrl{1} & & & & & & \gate[1]{R_3^\dag} & \gate[1]{R_2^\dag} & \gate[1]{H}  & \meter{} & \rstick{\ket{\theta_2}}\\
+% \lstick{\ket{\psi}} & & \gate[1]{U^{2^0}} & \gate[1]{U^{2^1}} & \gate[1]{U^{2^2}} & & & & & & & & \rstick{\ket{\psi}}
+% \end{quantikz}
+
+
+% \begin{quantikz}
+%     \lstick{\ket{0}} & \gate[1]{H} & \ctrl{1} & \gate[1]{H} & \metercw[label style={inner sep=1pt}]{\theta_0} & \gate[1]{X^{\theta_0}} & \gate[1]{H} & \ctrl{1} & \gate[1]{R_2^{\dag\theta_0}} & \gate[1]{H} & \metercw[label style={inner sep=1pt}]{\theta_1} & \gate[1]{X^{\theta_1}} & \text{\ldots}  \\
+%     \lstick{\ket{\psi}} & & \gate[1]{U^{2^2}} &&&&& \gate[1]{U^{2^1}} & & & & & \text{\ldots} \\
+% \end{quantikz}
+
+% \begin{quantikz}
+% \lstick{$|x_0\rangle$} & \gate[5]{U} & \rstick{\ldots} \\
+% \lstick{$|x_1\rangle$} & & \rstick{\ldots} \\
+% \lstick{\vdots}\\[2mm]
+% \lstick{$|x_{n-2}\rangle$} & & \rstick{\ldots} \\
+% \lstick{$|x_{n-1}\rangle$} & & \rstick{\ldots}
+% \end{quantikz}
+
+
+\begin{quantikz}[column sep=12pt]
+    \lstick{$|a_0\rangle$} & \ctrl{5} & & \ctrl{6} & \text{\ldots} & & & \text{\ldots} & & \ctrl{8} & & & \text{\ldots} & & \ctrl{9} & \rstick{$|a_0\rangle$}\\
+    \lstick{$|a_1\rangle$} & & \ctrl{5} & & \text{\ldots} & & & \text{\ldots} & \ctrl{7} & & & & \text{\ldots} & \ctrl{8} & & \rstick{$|a_1\rangle$}\\
+    \lstick{\vdots}\\[2mm]
+    \lstick{$|a_{n-2}\rangle$} & & & & \text{\ldots} & & \ctrl{5} & \text{\ldots} & & & & \ctrl{6} & \text{\ldots} & & & \rstick{$|a_{n-2}\rangle$}\\
+    \lstick{$|a_{n-1}\rangle$} & & & & \text{\ldots} & \ctrl{4} & & \text{\ldots} & & & \ctrl{5} & & \text{\ldots} & & & \rstick{$|a_{n-1}\rangle$}\\
+    \lstick{$|\phi_0(b)\rangle$} & \gate[1]{\text{$R_1$}} & & & \text{\ldots} & & & \text{\ldots} & & & & & \text{\ldots} & & & \rstick{$|\phi_0(a + b)\rangle$}\\
+    \lstick{$|\phi_1(b)\rangle$} & & \gate[1]{\text{$R_1$}} & \gate[1]{\text{$R_2$}} & \text{\ldots} & & & \text{\ldots} & & & & & \text{\ldots} & & & \rstick{$|\phi_1(a+b)\rangle$}\\
+    \lstick{\vdots}\\[2mm]
+    \lstick{$|\phi_{n-1}(b)\rangle$} & & & & \text{\ldots} & \gate[1]{\text{$R_1$}} & \gate[1]{\text{$R_2$}} & \text{\ldots} & \gate[1]{\text{$R_{n-1}$}} & \gate[1]{\text{$R_{n}$}}  & & & \text{\ldots} & & & \rstick{$|\phi_{n-1}(a+b)\rangle$}\\
+    \lstick{$|\phi_{n}(b)\rangle$} & & & & \text{\ldots} & & & \text{\ldots} & & & \gate[1]{\text{$R_2$}} & \gate[1]{\text{$R_3$}} & \text{\ldots} & \gate[1]{\text{$R_{n}$}} & \gate[1]{\text{$R_{n+1}$}} & \rstick{$|\phi_{n}(a+b)\rangle$}\\
+\end{quantikz}
+
+
+
+
+
+
+% \begin{quantikz}
+% \lstick{$|a_0\rangle$} & \ctrl{5} & \ctrl{6} & & \text{\ldots} & \ctrl{8} & \text{\ldots} & & \ctrl{9} & \text{\ldots} & & \rstick{$|a_0\rangle$} \\
+% \lstick{$|a_1\rangle$} & & & \ctrl{5}  & \text{\ldots} & & \text{\ldots} & & & \text{\ldots} & & \rstick{$|a_1\rangle$} \\
+% \lstick{\vdots}\\[2mm]
+% \lstick{$|a_{n-2}\rangle$} & & & & \text{\ldots} & & \text{\ldots} & & & \text{\ldots} & & \rstick{$|a_{n-2}\rangle$} \\
+% \lstick{$|a_{n-1}\rangle$} & & & & \text{\ldots} & & \text{\ldots} & \ctrl{4} & & \text{\ldots} & \ctrl{5} & \rstick{$|a_{n-1}\rangle$} \\
+% \lstick{$|\phi_0(b)\rangle$} & \gate[1]{\text{$R_{1}$}} & & & \text{\ldots} & & \text{\ldots} & & & \text{\ldots} & & \rstick{$|\phi_0(a+b)\rangle$} \\
+% \lstick{$|\phi_1(b)\rangle$} & & \gate[1]{\text{$R_{2}$}} & \gate[1]{\text{$R_{1}$}} & \text{\ldots} & & \text{\ldots} & & & \text{\ldots} & & \rstick{$|\phi_1(a+b)\rangle$} \\
+% \lstick{\vdots}\\[2mm]
+% \lstick{$|\phi_{n-1}(b)\rangle$} & & & & \text{\ldots} & \gate[1]{\text{$R_{n}$}} & \text{\ldots} & \gate[1]{\text{$R_{1}$}} & & \text{\ldots} & &  \rstick{$|\phi_{n-1}(a+b)\rangle$} \\
+% \lstick{$|\phi_{n}(b)\rangle$} & & & & \text{\ldots} & & \text{\ldots} & & \gate[1]{\text{$R_{n+1}$}} & \text{\ldots} & \gate[1]{\text{$R_{2}$}} & \rstick{$|\phi_{n}(a+b)\rangle$} \\
+% \end{quantikz}
+
+% \begin{quantikz}
+%     \lstick{$|0\rangle$} & & & & \targ{} & & \ctrl{1} & & & & \targ{} & & & & \rstick{$|0\rangle$} \\
+%     \lstick{$|\phi(b)\rangle$} & \gate[]{\rotatebox{90}{$\Phi ADD_a$}} & \gate[]{\rotatebox{90}{$\Phi ADD_N^{\dagger}$}} & \gate[]{\rotatebox{90}{$QFT^{\dagger}$}} & \ctrl{-1} & \gate[]{\rotatebox{90}{$QFT$}} & \gate[]{\rotatebox{90}{$\Phi ADD_N$}} & \gate[]{\rotatebox{90}{$\Phi ADD_a^{\dagger}$}} & \gate[]{\rotatebox{90}{$QFT^{\dagger}$}} & \targ{} & \ctrl{-1} & \targ{} & \gate[]{\rotatebox{90}{$QFT$}} & \gate[]{\rotatebox{90}{$\Phi ADD_a$}} & \rstick{$|\phi((a+b) \hspace{1mm} \text{mod} \hspace{1mm} N)\rangle$} \\
+% \end{quantikz}
+
+% \begin{quantikz}
+%     \lstick{$|0\rangle$} & \gate[2,disable auto
+% height][2pt][1.1cm]{\rotatebox{90}{$\Phi ADD_a MOD_N$}} & \rstick{$|0\rangle$}\\
+%     \lstick{$|\phi(b)\rangle$} & & \rstick{$|\phi((a+b) \hspace{1mm} \text{mod} \hspace{1mm} N)\rangle$}\\
+% \end{quantikz}
+
+% % Beauregard modular multiplier
+
+% \begin{quantikz}
+%     \lstick{$|x_0\rangle$} & \ctrl{4} & & \text{\ldots} & & \rstick{$|x_0\rangle$} \\
+%     \lstick{$|x_1\rangle$} & & \ctrl{3} & \text{\ldots} & & \rstick{$|x_1\rangle$} \\
+%     \lstick{\vdots}\\
+%     \lstick{$|x_{n-1}\rangle$} & & & \text{\ldots} & \ctrl{1} & \rstick{$|x_{n-1}\rangle$}\\
+%     \lstick{$|\phi(b)\rangle$} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{2^0a} MOD_N$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{2^1a} MOD_N$}} & \text{\ldots} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{2^{n-1}a} MOD_N$}} & \rstick{$|\phi((b + ax) \text{ mod } N)\rangle$}
+% \end{quantikz}
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|x\rangle$} & \gate[2,disable auto
+% height][2pt][0.9cm]{\rotatebox{90}{$\Phi CMULT_{a,N}$}} & \rstick{$|x\rangle$}\\
+%     \lstick{$|\phi(b)\rangle$} & & \rstick{$|\phi((b+ax) \text{ mod } N)\rangle$}\\
+% \end{quantikz}
+
+% % Beauregard reversible modular multiplier original version
+
+% \begin{quantikz}
+%     \lstick{$|x\rangle$} & \gate[1]{\text{$V_{a,N}$}} & \rstick{$|ax \text{ mod } N\rangle$}
+% \end{quantikz}
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|x\rangle$} & \qwbundle{n} & & \gate[2,disable auto
+% height][2pt][1cm]{\rotatebox{90}{$\Phi CMULT_{a,N}$}} & & \gate[2,disable auto
+% height][2pt][1cm]{\rotatebox{90}{$SWAP$}} & & \gate[2,disable auto
+% height][2pt][1cm]{\rotatebox{90}{$\Phi CMULT_{a^{-1},N}^{\dagger}$}} & & \rstick{$|ax \text{ mod } N \rangle$} \\
+%     \lstick{$|0\rangle$} & \qwbundle{n+1} & \gate[]{\rotatebox{90}{$QFT$}} &  & \gate[]{\rotatebox{90}{$QFT^{\dagger}$}} & & \gate[1]{\rotatebox{90}{$QFT$}} & & \gate[]{\rotatebox{90}{$QFT^{\dagger}$}} & \rstick{$|0\rangle$}
+% \end{quantikz}
+
+% % Proposition circuit inverse mod add
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|x\rangle$} & \text{\ldots} & \targ{} & \ctrl{1} & \targ{} & \gate[]{\rotatebox{90}{$\Phi ADD_{N}$}} & \targ{} & \ctrl{1} & \ctrl{1} & \targ{} & \ctrl{1} & \\
+%     \lstick{$|0\rangle$} & \text{\ldots} & \targ{} & \targ{} & & \ctrl{-1} & \ctrl{-1} & \targ{} & \targ{} & \ctrl{-1} & \targ{} &
+% \end{quantikz}
+
+% % Inverse modular multiplier
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|x_0\rangle$} & & \text{\ldots} & & \ctrl{4} & \rstick{$|x_0\rangle$} \\
+%     \lstick{$|x_{1}\rangle$} & & \text{\ldots} & \ctrl{3} & & \rstick{$|x_1\rangle$} \\
+%     \lstick{\vdots}\\
+%     \lstick{$|x_{n-1}\rangle$} & \ctrl{1} & \text{\ldots} & & & \rstick{$|x_{n-1}\rangle$}\\
+%     \lstick{$|\phi(y)\rangle$} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{2^{n-1}a} MOD_N^{\dagger}$}} & \text{\ldots} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{2^{1}a} MOD_N^{\dagger}$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{2^{0}a} MOD_N^{\dagger}$}} & \rstick{$|\phi((y - ax) \text{ mod } N)\rangle$}
+% \end{quantikz}
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|0\rangle$} & & & \ctrl{3} & \rstick{$|0\rangle$} \\
+%     \lstick{$|0\rangle$} & & \ctrl{2} & & \rstick{$|0\rangle$} \\
+%     \lstick{$|1\rangle$} & \ctrl{1} & & & \rstick{$|1\rangle$}\\
+%     \lstick{$|\phi(1)\rangle$} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{16} MOD_5^{\dagger}$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{8} MOD_5^{\dagger}$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{4} MOD_5^{\dagger}$}} & \rstick{$|\phi(?)\rangle$}
+% \end{quantikz}
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|0\rangle$} & & & & \ctrl{4} & \rstick{$|0\rangle$} \\
+%     \lstick{$|0\rangle$} & & & \ctrl{3} & & \rstick{$|0\rangle$} \\
+%     \lstick{$|1\rangle$} & & \ctrl{2} & & & \rstick{$|1\rangle$}\\
+%     \lstick{$|0\rangle$} & \ctrl{1} & & & & \rstick{$|0\rangle$} \\
+%     \lstick{$|\phi(1)\rangle$} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{32} MOD_5^{\dagger}$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{16} MOD_5^{\dagger}$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{8} MOD_5^{\dagger}$}} & \gate[1,disable auto
+% height][2pt][3.5cm]{\rotatebox{90}{$\Phi ADD_{4} MOD_5^{\dagger}$}} & \rstick{$|\phi(?)\rangle$}
+% \end{quantikz}
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|j\rangle$} & \gate[2]{\text{$U_{a,N}$}} & \rstick{$|j\rangle$} \\
+%     \lstick{$|x\rangle$} & & \rstick{$|a^j x \text{ mod } N\rangle$}
+% \end{quantikz}
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|j_0\rangle$} & \ctrl{4} & & & & \rstick{$|j_0\rangle$} \\
+%     \lstick{$|j_1\rangle$} & & \ctrl{3} & & & \rstick{$|j_1\rangle$} \\
+%     \lstick{\vdots}\\
+%     \lstick{$|j_{t-1}\rangle$} & & & & \ctrl{1} & \rstick{$|j_{t-1}\rangle$} \\
+%     \lstick{$|x\rangle$} & \gate[]{\text{$V_{a^{2^{0}},N}$}} & \gate[]{\text{$V_{a^{2^{1}},N}$}} & \ldots & \gate[]{\text{$V_{a^{2^{t-1}},N}$}} & \rstick{$|a^j x \text{ mod } N\rangle$}
+% \end{quantikz}
+
+% % VQC
+
+% \vspace{1cm}
+
+% \begin{quantikz}
+%     \lstick{$|0\rangle$} & \gate[4,disable auto height]{\rotatebox{90}{$\mathcal{U}_{\Phi}(\vec x)$}} & \gate[4,disable auto height]{\rotatebox{90}{$W(\vec \theta)$}} & \meter{} & \setwiretype{c} \midstick{$z_0$} \rstick[4]{$\hspace{1.2cm} f(z) \in \{ -1,1 \}$} \\
+%     \lstick{$|0\rangle$} & & & \meter{} & \setwiretype{c} \midstick{$z_1$} \\
+%     \lstick{\vdots}\\[2mm]
+%     \lstick{$|0\rangle$} & & & \meter{} & \setwiretype{c} \midstick{$z_{n-1}$} \\
+% \end{quantikz}
+
+
+% \begin{quantikz}
+%     \lstick{$| c_1 \rangle$} & \ctrl{1} & \rstick{$| c_1 \rangle$}\\
+%     \lstick{$| c_2 \rangle$} & \ctrl{1} & \rstick{$| c_2 \rangle$}\\
+%     \lstick{$|\phi_0 (b) \rangle$} & \gate[5]{\text{$\Phi$ADD$_a$}} &\rstick{$| \phi_0 (ac_1c_2 + b) \rangle$}\\
+%     \lstick{$| \phi_1 (b) \rangle$} & & \rstick{$| \phi_1 (ac_1c_2 + b) \rangle$}\\
+%     \lstick{\vdots}\\[2mm]
+%     \lstick{$| \phi_{n-1} (b) \rangle$} & &\rstick{$| \phi_{n-1} (ac_1c_2 + b) \rangle$}\\
+%     \lstick{$| \phi_n (b) \rangle$} & & \rstick{$| \phi_n (ac_1c_2 + b) \rangle$} \\
+% \end{quantikz}
+
+
+% \begin{quantikz}[column sep=4pt]
+%     \lstick{$|c_1 \rangle$} \slice{1} & \ctrl{1} & \slice{2} & & & & \slice{3}  & \ctrl{1} & & & & & & \ctrl{1} & \rstick{$|c_1 \rangle$}\\
+%     \lstick{$|c_2 \rangle$} & \ctrl{1} & & & & & & \ctrl{1} & & & & & & \ctrl{1} & \rstick{$|c_2 \rangle$}\\
+%     \lstick{$|\phi_{0}(b) \rangle$} & \gate[3]{\text{$\Phi$ADD$_a$}} & \gate[3]{\text{$\Phi$ADD$_N^\dag$}} & \gate[3]{\text{QFT$^\dag$}} & & \gate[3]{\text{QFT}} & \gate[3]{\text{$\Phi$ADD$_N$}} & \gate[3]{\text{$\Phi$ADD$_a^\dag$}} & \gate[3]{\text{QFT$^\dag$}} & & & & \gate[3]{\text{QFT}} & \gate[3]{\text{$\Phi$ADD$_a$}} & \rstick{$|\phi_{0}((a \cdot c_1c_2 + b) \text{ mod } N) \rangle$}\\
+%     \lstick{\vdots}\\[2mm]
+%     \lstick{$|\phi_{n}(b) \rangle$} & & & & \ctrl{1} & & & & &\targ{} & \ctrl{1} & \targ{} & & & \rstick{$|\phi_{n}((a \cdot c_1c_2 + b) \text{ mod } N) \rangle$}\\
+%     \lstick{$|0 \rangle$} & & & & \targ{} & & \ctrl{-1} & & & &\targ{} & & & & \rstick{$|0 \rangle$}
+% \end{quantikz}
+
+
+\begin{quantikz}[column sep=4pt]
+    \lstick{$| c \rangle$}  & \ctrl{1} & \ctrl{2} & \text{\ldots} & \ctrl{4} & & \rstick{$| c \rangle$}\\
+    \lstick{$| x_0 \rangle$} & \ctrl{4} & & \text{\ldots} & & & \rstick{$| x_0 \rangle$}\\
+    \lstick{$| x_1 \rangle$} & & \ctrl{3} & \text{\ldots} & & & \rstick{$| x_1 \rangle$}\\
+    \lstick{\vdots}\\[2mm]
+    \lstick{$| x_{n-1} \rangle$} & & & \text{\ldots} & \ctrl{1} & & \rstick{$| x_{n-1} \rangle$}\\
+    \lstick{$|\phi(b) \rangle$} & \gate[1]{\rotatebox{0}{$\Phi$ADD$_{2^0a \text{ mod } N}$ MOD$_N$}} & \gate[1]{\rotatebox{0}{$\Phi$ADD$_{2^1a \text{ mod } N}$ MOD$_N$}} & \text{\ldots} & \gate[1]{\rotatebox{0}{$\Phi$ADD$_{2^{n-1}a \text{ mod } N}$ MOD$_N$}}& & \rstick{$|\phi((b + ax \cdot c) \text{ mod } N) \rangle$}\\
+\end{quantikz}
+
+\begin{quantikz}
+    \lstick{\ket{c}} & \ctrl{1} & & \ctrl{1} & & \ctrl {1} & \rstick{\ket{c}} \\
+    \lstick{\ket{x}} & \gate[2]{\text{C$\Phi$MULT$_a$MOD$_N$}} & & \gate[2]{\text{SWAP}} & &  \gate[2]{\text{C$\Phi$MULT$_{a^{-1}}$MOD$_N^\dag$}} & \rstick{\ket{(ax) \text{ mod }N} si $c = 1$, \ket{x} sinon} \\
+    \lstick{\ket{\phi(0)}} & & \gate[1]{\text{QFT$^\dag$}} & & \gate[2]{\text{QFT}} & & \rstick{\ket{\phi(0)}} \\
+\end{quantikz}
+
+
+\end{document}

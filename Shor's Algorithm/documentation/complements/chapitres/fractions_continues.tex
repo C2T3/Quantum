@@ -1,0 +1,139 @@
+\renewcommand{\theequation}{C.\arabic{equation}}
+\setcounter{equation}{0}
+\section{Fractions continues}
+Soit $a$ un nombre rationnel, c'est-à-dire un nombre qui s'écrit sous la forme d'une fraction $\frac{p}{q}$ où $p$ et $q$ sont des entiers. Les fractions continues permettent, depuis la valeur décimale de $a$, de retrouver $p$ et $q$ pour connaître la forme fractionnaire de $a$ \cite{hardy75}. 
+
+On illustre les fractions continues avec un exemple. Prenons $a = 0.352$. Tout d'abord, on sépare la partie entière de la partie fractionnaire : $ 0.352 = 0 + 0.352$. On assigne la partie entière à une variable $a_0$. Donc, $a_0 = 0$. Puis, on manipule la partie fractionnaire et on garde encore sa partie entière qu'on assigne à $a_1$. Alors, $0.352 = 0 + \frac{1}{\frac{1}{0.352}} = 0 + \frac{1}{2.8409...} = 0 + \frac{1}{2 + 0.8409...} \implies a_1 = 2$. On continue ainsi de suite et, éventuellement, il y aura au dénominateur un entier qui n'a pas de partie fractionnaire, ce qui finira le processus. Au final, on se retrouve avec une liste [$a_0, ..., a_n$] qu'on nomme la représentation en fractions continues de $a$. Pour en revenir à $a = 0.352$, on aurait [0,2,1,5,3,2].
+
+\begin{equation*}
+    a = [a_0, ..., a_n] = a_0 + \frac{1}{a_1 + \frac{1}{a_2 + ...}}
+\end{equation*}
+
+Cependant, qu'est-ce qui nous garantit qu'il y a une telle représentation finie pour tout nombre rationnel? On montre ci-dessous pourquoi c'est le cas lorsque  $a$ est positif (bien que cela soit aussi vrai si $a$ est négatif).
+
+\textit{- D.1} : Si $a$ est un nombre rationnel positif, alors $a$ possède une représentation finie en fractions continues, c'est-à-dire que $a =[a_0, ..., a_n$] est une liste finie.
+
+\begin{quote}
+    En fait, les fractions continues peuvent être reliées à l'algorithme d'Euclide. Pour comprendre, on utilise un exemple où $a = \frac{43}{19} = 2.263...$ . Sa représentation en fractions continues est $[2,3,1,4]$ et le calcul du pgcd entre 43 et 19 donne 
+\end{quote}
+
+\begin{equation*}
+    43 = \textcolor{red}{2} \cdot 19 + 5,\ 19 = \textcolor{red}{3} \cdot 5 + 4,\ 5 = \textcolor{red}{1} \cdot 4 + 1,\ 4 = \textcolor{red}{4} \cdot 1 + 0
+\end{equation*}
+
+\begin{quote}
+    De là, on remarque que les nombres en rouge (la partie entière de $\frac{43}{19}, \frac{19}{5}$, ...) correspondent aux $a_i$ de la représentation en fractions continues. Cela a du sens, car on garde la partie entière de chaque division dans les fractions continues et que justement les nombres en rouge dans l'algorithme d'Euclide y correspondent.
+\end{quote}
+
+\begin{equation*}
+    \frac{43}{19} = \textcolor{red}{2} + \frac{1}{\frac{19}{5}} = \textcolor{red}{2} + \frac{1}{\textcolor{red}{3} + \frac{1}{\frac{5}{4}}} = \textcolor{red}{2} + \frac{1}{\textcolor{red}{3} + \frac{1}{\textcolor{red}{1} + \frac{1}{\textcolor{red}{4}}}}
+\end{equation*}
+
+\begin{quote}
+    L'algorithme d'Euclide contient un nombre fini de divisions et, comme on tire les $a_i$ de ces divisions, la liste $[a_0, ..., a_n$] doit aussi être finie. Par le fait même, cela montre qu'une telle représentation existe forcément pour tout nombre rationnel positif. En fait, dans le cas où $0 < a < 1$, on peut obtenir sa représentation en fractions continues en effectuant l'algorithme d'Euclide sur $\frac{1}{a}$, puis de là en extraire la liste $[a_0, ..., a_n]$ pour finalement rajouter 0 au début de la liste. $\square$
+\end{quote}
+
+Les termes $\{a_0$, $a_0 + \frac{1}{a_1}$, $a_0 + \frac{1}{a_1 + \frac{1}{a_2}}, ...\}$ correspondant respectivement à $\{[a_0], [a_0, a_1], [a_0, a_1, a_2], ...\}$ sont des « convergents » de la représentation en fractions continues de $a$ du fait qu'ils convergent progressivement vers sa réelle valeur. Effectivement, chaque convergent, lorsqu'on le calcule, nous donne une certaine fraction $\frac{p_i}{q_i}$ qui se rapproche de la véritable fraction $a = \frac{p_n}{q_n}$. Particulièrement, le dernier convergent $[a_0, ..., a_n]$ correspond à $\frac{p_n}{q_n}$. Par exemple, on écrit ci-dessous les convergents pour $a = 0.352 = \frac{44}{125}$.
+
+\begin{equation*}
+    \bullet \ [0] = 0 = \frac{0}{1}\ \ \ \bullet \ [0,2] = 0 + \frac{1}{2} = \frac{1}{2}\ \ \ \bullet \ [0,2,1] = 0 + \frac{1}{2 + \frac{1}{1}} = \frac{1}{3}\ \ \ \bullet \ [0,2,1,5] = 0 + \frac{1}{2 + \frac{1}{1 + \frac{1}{5}}} = \frac{6}{17}
+\end{equation*}
+
+\begin{equation*}
+    \ \ \ \bullet \ [0,2,1,5,3] = 0 + \frac{1}{2 + \frac{1}{1 + \frac{1}{5 + \frac{1}{3}}}} = \frac{19}{54}\ \ \ \bullet \ [0,2,1,5,3,2] = 0 + \frac{1}{2 + \frac{1}{1 + \frac{1}{5 + \frac{1}{3 + \frac{1}{2}}}}} = \frac{44}{125}
+\end{equation*}
+
+Un autre fait intéressant est qu'on peut choisir dans la représentation en fractions continues si on veut une liste de taille paire ou impaire. En effet, on peut faire un changement trivial pour le dernier dénominateur afin que la taille de la liste des $a_i$ augmente de 1. Ainsi, on peut passer d'un nombre pair à impair de $a_i$ et inversement. Par exemple, 
+
+\begin{equation*}
+    0.352 = [0,2,1,5,3,2] = 0 + \frac{1}{2 + \frac{1}{1 + \frac{1}{5 + \frac{1}{3 + \frac{1}{2}}}}} = 0 + \frac{1}{2 + \frac{1}{1 + \frac{1}{5 + \frac{1}{3 + \frac{1}{1 + \frac{1}{1}}}}}} = [0,2,1,5,3,1,1]
+\end{equation*}
+
+\textit{- D.2} : Si $[a_0, ..., a_n]$ est la représentation en fractions continues de $a$, alors $a = \frac{p_n}{q_n}$. Plus généralement, on a que $p_0 = a_0$, $q_0 = 1$, $p_1 = 1 + a_0a_1$, $q_1 = a_1$ et, pour $2 \leq i \leq n$, que $p_n = a_np_{n-1} + p_{n-2}$ avec $q_n = a_nq_{n-1} + q_{n-2}$. 
+
+\begin{quote}
+    D'abord, 
+\end{quote}
+
+\begin{equation*}
+    [a_0] = a_0 = \frac{a_0}{1} \implies p_0 = a_0 \text{ et } q_0 = 1
+\end{equation*}
+
+\begin{quote}
+    Puis, 
+\end{quote}
+
+\begin{equation*}
+    [a_0, a_1] = a_0 + \frac{1}{a_1} = \frac{1 + a_0a_1}{a_1} \implies p_1 = 1 + a_0a_1 \text{ et } q_1 = a_1    
+\end{equation*}
+
+\begin{quote}
+    On regarde ensuite le cas de base pour la récursion.     
+\end{quote}
+
+\begin{equation*}
+    [a_0, a_1, a_2] = a_0 + \frac{1}{a_1 + \frac{1}{a_2}} = \frac{a_0(a_1a_2 + 1) + a_2}{a_1a_2 + 1} = \frac{a_2(a_0a_1 + 1) + a_0}{a_2a_1 + 1}
+\end{equation*}
+
+\begin{quote}
+    Cela respecte la formule de récursion. On suppose maintenant que la relation de récursion fonctionne pour $2 \leq i \leq n-1$ et on regarde si elle est aussi respectée quand $i = n$. En premier lieu, on remarque que $[a_0, ..., a_n] = [a_0, ..., a_{n-2}, a_{n-1} + \frac{1}{a_n}]$ par définition. Ensuite, comme il y a $n-1$ éléments dans la liste, on sait par hypothèse que $[a_0, ..., a_{n-2}, a_{n-1} + \frac{1}{a_n}] = \frac{\tilde{p}_{n-1}}{\tilde{q}_{n-1}}$. Donc,
+\end{quote}
+
+\begin{equation*}
+    \frac{\tilde{p}_{n-1}}{\tilde{q}_{n-1}} = \frac{(a_{n-1} + \frac{1}{a_n})p_{n-2} + p_{n-3}}{(a_{n-1} + \frac{1}{a_n})q_{n-2} + q_{n-3}} = \frac{a_{n-1}p_{n-2} + p_{n-3} + \frac{p_{n-2}}{a_n}}{a_{n-1}q_{n-2} + q_{n-3} + \frac{q_{n-2}}{a_n}} = \frac{p_{n-1} + \frac{p_{n-2}}{a_n}}{q_{n-1} + \frac{q_{n-2}}{a_n}} = \frac{a_np_{n-1} + p_{n-2}}{a_nq_{n-1} + q_{n-2}} = \frac{p_n}{q_n}
+\end{equation*}
+
+\begin{equation*}
+    \implies [a_0, ..., a_n] = [a_0, ..., a_{n-2}, a_{n-1} + \frac{1}{a_n}] = \frac{\tilde{p}_{n-1}}{\tilde{q}_{n-1}} = \frac{p_n}{q_n} \ \square
+\end{equation*}
+
+\textit{- D.3} : $q_np_{n-1} - p_nq_{n-1} = (-1)^n \ \forall n \geq 1$.
+
+\begin{quote}
+    Si $n=1$, on a $q_1p_0 - p_1q_0 = a_1a_0 - (1 + a_0a_1) = -1 = (-1)^1$. On suppose que c'est vrai jusqu'à $n$ et on regarde si la relation fonctionne pour $n+1$. Par D.2, $p_{n+1} = a_{n+1}p_n + p_{n-1}$ et $q_{n+1} = a_{n+1}q_n + q_{n-1}$. Donc,
+\end{quote}
+\begin{equation*}
+    q_{n+1}p_n - p_{n+1}q_n = (a_{n+1}q_np_n + q_{n-1}p_n) - (a_{n+1}p_nq_n + p_{n-1}q_n) = -1 \cdot (q_np_{n-1} - p_nq_{n-1}) 
+\end{equation*}
+
+\begin{equation*}
+    = -1 \cdot (-1)^n = (-1)^{n+1} \ \square 
+\end{equation*}
+
+Pour l'algorithme de Shor, les fractions continues servent à trouver l'ordre $r$ depuis $\frac{s}{r}$. Cependant, selon le degré de précision de la QPE, on peut se retrouver avec une estimation de $\frac{s}{r}$. Comme il ne s'agit pas de la valeur exact, est-ce que les fractions continues permettent tout de même de trouver $r$? Oui, mais seulement si l'approximation est suffisamment proche de la valeur exacte.
+
+\textit{- D.4} : Soient $x$ et $\frac{p}{q}$ deux nombres rationnels tels que $\abs*{\frac{p}{q} - x} \leq \frac{1}{2q^2}$. Alors, $\frac{p}{q}$ est un convergent des fractions continues pour $x$.
+
+\begin{quote}
+    Soit $\frac{p}{q} = [a_0, ..., a_n]$ où $\frac{p_n}{q_n} = \frac{p}{q}$. On définit 
+\end{quote}
+
+\begin{equation*}
+    x = \frac{p}{q} + \frac{\delta}{2q^2} = \frac{p_n}{q_n} + \frac{\delta}{2q^2}
+\end{equation*}
+
+\begin{quote}
+    où $|\delta| < 1$ ainsi que le nombre rationnel
+\end{quote}
+
+\begin{equation*}
+    \lambda = 2 \left(\frac{q_np_{n-1} - p_nq_{n-1}}{\delta}\right) - \frac{q_{n-1}}{q_n} = \frac{2(-1)^n}{\delta} - \frac{q_{n-1}}{q_n} 
+\end{equation*}
+
+\begin{quote}
+    On remarque alors que
+\end{quote}
+
+\begin{equation*}
+    \frac{\lambda p_n + p_{n-1}}{\lambda q_n + q_{n-1}} = \frac{\frac{2p_n(-1)^n}{\delta} - \frac{p_nq_{n-1}}{q_n}  + p_{n-1}}{\frac{2q_n(-1)^n}{\delta}} = \frac{2p_n(-1)^n + \delta\left(\frac{q_np_{n-1} -p_nq_{n-1}}{q_n}\right)}{2q_n(-1)^n} = \frac{2p_n(-1)^n + \frac{\delta(-1)^n}{q_n}}{2q_n(-1)^n}
+\end{equation*}
+
+\begin{equation*}
+    = \frac{p_n}{q_n} + \frac{\delta}{2q_n^2} = x
+\end{equation*}
+
+\begin{quote}
+    Donc, $x = [a_0, ..., a_n, \lambda]$ et il s'en suit que $\frac{p_n}{q_n} = \frac{p}{q} = [a_0, ..., a_n]$ est un convergent de la représentation en fractions continues de $x$. $\square$
+\end{quote}
+
+Ainsi, pour en revenir à Shor, on peut trouver l'ordre en calculant les convergents de l'estimation de $\frac{s}{r}$ puis vérifier si le dénominateur respecte les critères de l'ordre ($a^r \text{ mod } N = 1$). Le tout se calcule en temps polynomial \cite{nielsen00}.

@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[french]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[nottoc]{tocbibind}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[shortlabels]{enumitem}
+\usepackage{float}
+\usepackage{import}
+\usepackage[margin=2cm]{geometry}
+\usepackage{titling}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{quantikz}
+\usepackage{listings}
+\usepackage{appendix}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{csquotes}
+
+
+\setlength{\parskip}{\baselineskip}%
+\setlength{\parindent}{0pt}%
+
+\renewcommand{\algorithmicrequire}{\textbf{Entrée :}}
+\renewcommand{\algorithmicensure}{\textbf{Sortie :}}
+\renewcommand{\algorithmicif}{\textbf{Si}}
+\renewcommand{\algorithmicthen}{\textbf{alors :}}
+\renewcommand{\algorithmicendif}{\textbf{}}
+\renewcommand{\algorithmicreturn}{\textbf{retourner}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\setlength{\parindent}{0pt}
+\renewcommand\lstlistingname{Code Python}
+\definecolor{comments}{RGB}{0,128,0} % Define the color "comments"
+\lstset{frame=tb,
+  language=Python,
+  numbers=left,
+  stepnumber=1,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+%   numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{comments},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=1,
+  frame=single,
+%   showtabs=false,
+}
+
+\hypersetup{
+    pdfnewwindow=true,      % Open links in a new window/tab
+}
+
+\setlength{\droptitle}{8cm}
+
+\title{\textbf{Compléments pour l'algorithme de Shor}}
+\author{Mathis Beaudoin, C2T3, Trois-Rivières}
+\date{Été 2024}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\maketitle
+\clearpage
+
+\tableofcontents
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\clearpage
+
+\import*{./chapitres}{avantpropos.tex}
+
+\clearpage
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\renewcommand{\thesection}{\Alph{section}}
+
+\import*{./chapitres}{transfos_fourier.tex}
+\import*{./chapitres}{groupe.tex}
+\import*{./chapitres}{nombre.tex}
+\import*{./chapitres}{fractions_continues.tex}
+\import*{./chapitres}{pseudocode.tex}
+\import*{./chapitres}{cheat.tex}
+
+\clearpage
+\import*{./chapitres}{remerciements.tex}
+
+\clearpage
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}

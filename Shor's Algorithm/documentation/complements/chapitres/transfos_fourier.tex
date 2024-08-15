@@ -1,0 +1,168 @@
+\renewcommand{\theequation}{A.\arabic{equation}}
+\setcounter{equation}{0}
+\section{Transformée de Fourier}
+Une fonction périodique est une fonction qui se répète après un certain temps $T$ qu'on nomme la période. En termes mathématiques, on écrit que $f(x + T) = f(x)$. De plus, il va de soi que pour tout entier $m$, $f(x + mT) = f(x)$. Par exemple, les fonctions sinus, cosinus et constantes sont des fonctions périodiques. Aussi, si on combine deux fonctions différentes de même période, alors la fonction résultante est périodique et a la même période. On peut montrer que l'ensemble de fonctions $\{\sin(nx), \cos(nx)\}_{\forall n \in \mathbb{N}} = \{1, \ \cos(x), \ \sin(x), \ ..., \ \cos(nx),\ \sin(nx), \ ... \}$ forme une base pour les fonctions périodiques, c'est-à-dire que toute fonction $f(x)$ période s'écrit comme une combinaison linéaire des éléments de cet ensemble \cite{kreyszig11}.
+
+\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n\cos(nx) + b_n\sin(nx)\right)    
+\end{equation}
+
+Les $a_n$ et $b_n$ sont tous des coefficients réels. Évidemment, (A.1) est vraie si la série infinie converge, ce qui se produit la plupart du temps et qu'on peut montrer à l'aide de  théorèmes qui ne nous intéressent pas ici \cite{kreyszig11}. Le facteur $\frac{1}{2}$ pour $a_0$ est présent afin de plus facilement généraliser des résultats qui arriveront plus tard. En fait, l'équation (A.1) correspond à la série de Fourier de la fonction périodique $f(x)$ sous la forme sinus-cosinus. Il existe d'autres formes qu'on montrera plus tard. On aimerait savoir comment calculer la valeur des coefficients afin de connaître véritablement l'expansion de $f(x)$ en série de Fourier, car pour l'instant les $a_n$ et $b_n$ sont des variables bidon.
+
+\subsubsection*{Détermination des coefficients (forme sinus-cosinus)}
+Soit une fonction périodique  $f(x)$ de période $T = 2\pi$ qu'on peut exprimer selon (A.1). On intègre (A.1) de $-\pi$ à $\pi$ pour obtenir la valeur de $a_0$.
+
+\begin{equation*}
+    \int_{-\pi}^{\pi} f(x) dx = \int_{-\pi}^{\pi} \left[\frac{1}{2}a_0 + \sum_{n=1}^{\infty} (a_n \cos(nx) + b_n \sin(nx))\right] dx
+\end{equation*}
+
+\begin{equation*}
+    = \int_{-\pi}^{\pi}\frac{1}{2} a_0 dx + \sum_{n=1}^{\infty} \left(\int_{-\pi}^{\pi} a_n \cos(nx) dx + \int_{-\pi}^{\pi} b_n \sin(nx) dx \right) = \frac{1}{2} 2\pi a_0 + \sum_{n=1}^{\infty} (a_n \cdot 0 + b_n \cdot 0) = \pi a_0
+\end{equation*}
+
+\begin{equation}
+    \implies a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx
+\end{equation}
+
+Puis, on intègre (A.1) de $-\pi$ à $\pi$ mais en multipliant d'abord par $\cos(mx)$ où $m$ est un entier positif quelconque. On utilisera le fait que $\cos(nx)\cos(mx) = \frac{1}{2}\cos((n-m)x) + \frac{1}{2}\cos((n+m)x)$ et on ferra attention aux différents cas possibles ($n\neq m , n = m$).
+
+\begin{equation*}
+    \int_{-\pi}^{\pi} f(x)\cos(mx) dx = \int_{-\pi}^{\pi} \left(\frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos(nx) + b_n \sin(nx))\right) \cos(mx) dx
+\end{equation*}
+
+\begin{equation*}
+    = \int_{-\pi}^{\pi} \frac{a_0}{2} \cos(mx) dx + \sum_{n=1}^{\infty} \left(\int_{-\pi}^{\pi} a_n\cos(nx)\cos(mx)dx + \int_{-\pi}^{\pi} b_n\sin(nx)\cos(mx)dx\right)
+\end{equation*}
+
+\begin{equation*}
+    = \sum_{n=1}^{\infty} \left(\int_{-\pi}^{\pi}\frac{a_n}{2}\cos((n-m)x)dx + \int_{-\pi}^{\pi}\frac{a_n}{2}\cos((n+m)x)dx\right) = a_m \pi
+\end{equation*}
+
+\begin{equation}
+    \implies a_m = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(mx)dx \implies a_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)dx
+\end{equation}
+
+Finalement, on intègre (A.1) de $-\pi$ à $\pi$ mais en multipliant par $\sin(mx)$ où $m$ est un entier positif quelconque. On utilisera le fait que $\sin(nx)\sin(mx) = \frac{1}{2}\cos((n-m)x) - \frac{1}{2}\cos((n+m)x)$ et on ferra attention aux différents cas possibles ($n\neq m, n = m$). Des calculs similaires à ce qui permet de trouver (A.3) indique que 
+
+\begin{equation}
+    b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx) dx
+\end{equation}
+
+Pour résumer, les coefficients de (A.1) sont : 
+
+\begin{enumerate}
+    \item $a_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)dx,  \ \forall n=0,1,2,...$ 
+    \item $b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)dx, \ \forall n = 1,2,...$
+\end{enumerate}
+
+Il n'y a aucune justification particulière quant au choix des bornes d'intégration. Autrement dit, on aurait pu prendre n'importe quel intervalle d'intégration de taille $2\pi$ ($0$ à $2\pi$ par exemple) pour faire les calculs précédents du fait que $f(x)$ est périodique. De plus, on ne vérifie pas ici les critères permettant d'inverser la somme et l'intégrale, mais on peut montrer que la permutation est autorisée dans ce cas \cite{kreyszig11}. En général, beaucoup de fonctions périodiques ont une série de Fourier bien que pour cela, certaines conditions doivent être respectées \cite{kreyszig11}. Finalement, si on additionne deux fonctions périodiques $f_1$ et $f_2$ ayant une série de Fourier, alors la fonction résultante $f_1 + f_2$ possède aussi une série de Fourier et ses coefficients correspondent à la somme des coefficients de $f_1$ et $f_2$ \cite{kreyszig11}.
+
+\subsubsection*{Détermination des coefficients (forme exponentielle)}
+On sait que $
+     \cos(nx) = \frac{e^{inx} + e^{-inx}}{2} \ \ \text{et que} \ \sin(nx) = \frac{e^{inx} - e^{-inx}}{2i} $
+. On remplace cela dans (A.1) afin d'avoir
+
+\begin{equation*}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \left(\frac{e^{inx} + e^{-inx}}{2}\right) + b_n \left(\frac{e^{inx} - e^{-inx}}{2i}\right)\right) = \frac{a_0}{2} + \sum_{n=1}^{\infty} e^{inx}\left(\frac{a_n - ib_n}{2} \right) + \sum_{n=1}^{\infty}e^{-inx} \left(\frac{a_n + ib_n}{2}\right)
+\end{equation*}
+
+On remarque que les termes entre parenthèses dans la dernière égalité sont conjugués l'un de l'autre. Alors, on fait des tours de passe-passe avec l'indice des sommes pour les combiner.
+
+\begin{equation*}
+    \frac{a_0}{2} + \sum_{n=1}^{\infty} c_n e^{inx} + \sum_{n=1}^{\infty} \bar{c}_n e^{-inx} = \frac{a_0}{2} + \sum_{n=1}^{\infty}c_{n}e^{inx} + \sum_{n=-1}^{-\infty} \bar{c}_{-n} e^{inx} 
+\end{equation*} 
+
+\begin{equation}
+    = \sum_{n= -\infty}^{\infty} c_n e^{inx} \ \ \text{où} \ \ c_n = \begin{cases}
+        \frac{1}{2}(a_{-n} + ib_{-n}) & \text{si} \ n \leq -1 \\
+        \frac{1}{2}(a_{n} - ib_{n}) & \text{si} \ n \geq 1 \\
+        \frac{a_0}{2} & \text{si} \ n = 0 
+    \end{cases}
+\end{equation}
+
+Afin de trouver la valeur des $c_n$, on peut remplacer (A.3) et (A.4) dans chacun des cas de (A.5).
+
+$n \geq 1$:
+
+\begin{equation*}
+    \frac{1}{2}(a_n - ib_n) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)\left(\cos(nx) - i \sin(nx)\right) dx = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}dx
+\end{equation*}
+
+$n = 0$ :
+
+\begin{equation*}
+    \frac{a_0}{2} = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)dx
+\end{equation*}
+
+$n \leq -1$ : 
+
+\begin{equation*}
+    \frac{1}{2}(a_{-n} + ib_{-n}) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\left(\cos(-nx) + i \sin(-nx)\right) dx = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx} dx
+\end{equation*}
+
+Donc, $\forall n$ :
+
+\begin{equation}
+    c_n = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}dx
+\end{equation}
+
+\subsubsection*{Période quelconque pour la forme sinus-cosinus}
+Jusqu'à présent, on a fait les calculs seulement pour des fonctions ayant une période de $2\pi$. On veut étendre les équations à une fonction $f(t)$ de période $T$ quelconque. Pour ce faire, on peut employer un changement de variable afin de redimensionner la fonction pour qu'elle est une période de $2\pi$. On pose $t = \frac{x}{2\pi} T$, ce qui donne bien à $f(x)$ une période de $2\pi$ et lui permet d'être écrite comme (A.1). Cependant, on voudrait que les équations soient écrites selon la variable d'origine $t$. Puisque $x = \frac{2\pi}{T}t$, alors $dx = \frac{2\pi}{T}dt$ et l'intervalle d'intégration passe de $[-\pi,\pi]$ à $[-\frac{T}{2}, \frac{T}{2}]$. On obtient alors la série de Fourier pour une fonction ayant une période arbitraire
+
+\begin{equation}
+    f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \cos\left(\frac{2\pi n}{T}t\right) + b_n \sin\left(\frac{2\pi n}{T}t\right)\right)
+\end{equation}
+
+avec des coefficients 
+
+\begin{equation}
+    a_n = \frac{2}{T} \int_{-T/2}^{T/2} f(t) \cos \left(\frac{2\pi n }{T}t\right) dt, \ b_n = \frac{2}{T} \int_{-T/2}^{T/2} f(t) \sin \left(\frac{2\pi n }{T}t\right) dt  
+\end{equation}
+
+\subsubsection*{Période quelconque pour la forme exponentielle}
+On peut appliquer le même raisonnement à (A.5) et (A.6) pour obtenir
+
+\begin{equation}
+    f(t) = \sum_{-\infty}^{\infty} c_n e^{\frac{2\pi i n}{T}t}
+\end{equation}
+
+avec des coefficients 
+
+\begin{equation}
+    c_n = \frac{1}{T} \int_{-T/2}^{T/2} f(t) e^{\frac{-2\pi i n}{T}t} dt
+\end{equation}
+
+\subsubsection*{Obtention de la transformée de Fourier}
+On pose $k_n = \frac{2\pi n}{T}$, $\Delta k = \frac{2\pi}{T}$ et $C(k_n) = \frac{T}{\sqrt{2\pi}}c_n = \frac{1}{\sqrt{2\pi}}\int_{-T/2}^{T/2}f(t)e^{-i k_n t} dt$ qu'on remplace dans (A.9) et (A.10) \cite{Schumacher_Westmoreland_2010}.
+
+\begin{equation*}
+    f(t) = \sum_{n = -\infty}^{\infty} c_n e^{i k_n t} = \sum_{n = -\infty}^{\infty} \left(\frac{1}{T}\int_{-T/2}^{T/2} f(t) e^{-i k_n t} dt\right) e^{ik_n t} = \frac{1}{2\pi} \sum_{n = -\infty}^{\infty} \left(\int_{-T/2}^{T/2} f(t)e^{-i k_n t} dt\right) e^{i k_n t} \Delta k
+\end{equation*}
+
+\begin{equation}
+    = \frac{1}{\sqrt{2\pi}} \sum_{n = -\infty}^{\infty} C(k_n) e^{i k_n t} \Delta k
+\end{equation}
+
+Si on laisse $T \rightarrow \infty$, les $k_n$ deviennent de plus en plus proches les uns des autres et finissent par être continus. De plus, $\Delta k$ devient de plus en plus petit dans ce cas.
+
+\begin{equation*}
+    \lim_{T\rightarrow\infty} C(k_n) = \lim_{T\rightarrow\infty} \frac{1}{\sqrt{2\pi}}\int_{-T/2}^{T/2} f(t) e^{-i k_n t} dt = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(t) e^{-i k t} dt = \hat{f}(k)
+\end{equation*}
+
+\begin{equation*}
+    \implies \lim_{T\rightarrow\infty} f(t) = \lim_{T\rightarrow\infty} \frac{1}{\sqrt{2\pi}} \sum_{n = -\infty}^{\infty} C(k_n) e^{i k_n t} \Delta k = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \hat{f}(k) e^{ikt} dk = \check{f}(t)
+\end{equation*}
+
+On définit la transformée de Fourier d'une fonction $f$ comme étant 
+
+\begin{equation}
+    \hat{f}(k) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \check{f}(t) e^{-i k t} dt
+\end{equation}
+
+et la transformée de Fourier inverse comme étant 
+
+\begin{equation}
+    \check{f}(t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \hat{f}(k) e^{i k t} dk
+\end{equation}
+
+Il n'est pas évident de voir cela directement, mais la transformée de Fourier permet de faire un changement de base \cite{kreyszig11}. Par exemple, on peut retrouver les différentes fréquences pures contenues dans un signal sonore dans le temps grâce à ces équations. En ce sens, la transformée de Fourier permet de passer de la base temporelle à la base des fréquences. La transformée de Fourier inverse permet évidemment de faire le changement de base dans l'autre direction. Une vidéo intuitive de 3Blue1Brown explique la transformée de Fourier de manière conceptuelle, bien que davantage de notions en analyse de Fourier soient nécessaires pour comprendre pleinement les équations.

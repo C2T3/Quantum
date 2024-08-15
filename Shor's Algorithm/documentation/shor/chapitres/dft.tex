@@ -1,0 +1,43 @@
+\section{Transformée de Fourier discrète (DFT)}
+La DFT est l'analogue discret de la transformée de Fourier (voir section A du document complémentaire) \cite{stein2011fourier}. La transformée de Fourier discrète transforme un vecteur $\Vec{x} = (x_0 , ..., x_{N-1})^T \in \mathbb{C}^N$ en un autre vecteur $\Vec{y} = (y_0 , ..., y_{N-1})^T \in \mathbb{C}^N$ avec coefficients 
+
+\begin{equation}
+     y_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}x_j e^{-\frac{2\pi i}{N}jk}
+\end{equation}
+
+On étudie son impact sur la base canonique $\{\Vec{e}_0, ..., \Vec{e}_{N-1}\}$, c'est-à-dire $\{(1, 0, ...,0)^T, (0, 1, 0, ..., 0)^T, ..., (0, ..., 0, 1)^T\}$. Par (4), on sait que l'application de la DFT sur $\Vec{e}_j$ donne des coefficients $y_k = \frac{1}{\sqrt{N}}e^{-\frac{2\pi i}{N}jk}$, car $\Vec{e}_j$ n'a qu'un élément non nul. Ainsi, 
+
+\begin{equation*}
+    DFT(\Vec{e}_j) = \frac{1}{\sqrt{N}}(1, e^{-\frac{2\pi i}{N}j}, ..., e^{-\frac{2\pi i}{N}j(N-1)})^T = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{-\frac{2\pi i}{N}jk} \Vec{e}_k = \Vec{u}_j
+\end{equation*}
+
+Donc, la DFT transforme $\{\Vec{e}_j\}$ en un autre ensemble de vecteurs $\{\Vec{u}_j\}$. On s'assure que $\{\Vec{u}_j\}$ forme une base orthonormée.
+
+\begin{equation*}
+    \Vec{u}_a \cdot \Vec{u}_b = \left(\frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{-\frac{2\pi i}{N}ak}\Vec{e}_k\right)^\dag \cdot \left(\frac{1}{\sqrt{N}}\sum_{k^{'} = 0}^{N-1}e^{-\frac{2\pi i}{N}b k^{'}}\Vec{e}_{k^{'}}\right) = \frac{1}{N} \sum_{k=0}^{N-1}\sum_{k^{'} = 0}^{N-1} e^{-\frac{2\pi i}{N}(k^{'}b - ka)}\Vec{e}_k \cdot \Vec{e}_{k^{'}}
+\end{equation*}
+
+On distingue alors deux cas.
+
+\begin{equation*}
+    a = b \text{: \ } \Vec{u}_a \cdot \Vec{u}_b = \frac{1}{N} \sum_{k=0}^{N-1}\sum_{k^{'} = 0}^{N-1} e^{-\frac{2\pi i}{N}b(k^{'} - k)}\Vec{e}_k \cdot \Vec{e}_{k^{'}} = \frac{1}{N}\sum_{k=0}^{N-1} e^{-\frac{2\pi i}{N}b (k - k)} = \frac{1}{N}\sum_{k=0}^{N-1}1 = 1 
+\end{equation*}
+
+\begin{equation*}
+    a \neq b \text{: \ } \Vec{u}_a \cdot \Vec{u}_b = \frac{1}{N} \sum_{k=0}^{N-1}\sum_{k^{'} = 0}^{N-1} e^{-\frac{2\pi i}{N}(k^{'}b - ka)}\Vec{e}_k \cdot \Vec{e}_{k^{'}} = \frac{1}{N}\sum_{k=0}^{N-1} e^{-\frac{2\pi i}{N}k (b-a)} = \frac{1}{N}\sum_{k=0}^{N-1} \omega ^{k(b-a)} = \frac{1}{N}\frac{1 -\omega^{N(b-a)}}{1-\omega^{(b-a)}} = 0
+\end{equation*}
+
+    Ainsi, $\{\Vec{u}_j\}$ forme une base orthonormée. Donc, la DFT effectue un changement de base et on peut écrire la matrice de changement de base $U$.
+
+\begin{equation*}
+    U = \left(\Vec{u}_0, ...,\Vec{u}_{N-1}\right) \text{\ où \ } U_{jk} = \frac{1}{\sqrt{N}} \ e^{-\frac{2\pi i}{N}jk} = \frac{1}{\sqrt{N}} \ \omega^{jk} \text{\ où \ } \omega = e^{-\frac{2\pi i}{N}} 
+\end{equation*}
+
+On remarque que $U$ est symétrique par définition.
+ De surcroît, on peut facilement montrer que $U$ est unitaire grâce au fait que $\{\Vec{u}_j\}$ forme une base orthonormée.
+
+\begin{equation*}
+    U^\dag U = [\Vec{u}_j \cdot   \Vec{u}_k]_{j,k = 0}^{N-1} = \mathbb{I}
+\end{equation*}
+
+On dit que $U$ correspond à la DFT et que $U^{\dag}$ correspond à la DFT inverse.
