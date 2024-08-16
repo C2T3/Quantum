@@ -22,6 +22,11 @@ M.~A. Nielsen and I.~L. Chuang, {\em Quantum Computation and Quantum
 G.~H. Hardy and E.~M. Wright, {\em An Introduction to the Theory of Numbers}.
 \newblock Oxford, fourth~ed., 1975.
 
+\bibitem{Shor_1997}
+P.~W. Shor, ``Polynomial-time algorithms for prime factorization and discrete
+  logarithms on a quantum computer,'' {\em SIAM Journal on Computing}, vol.~26,
+  p.~1484–1509, Oct. 1997.
+
 \bibitem{Smolin_2013}
 J.~A. Smolin, G.~Smith, and A.~Vargo, ``Oversimplifying quantum factoring,''
   {\em Nature}, vol.~499, p.~163–165, July 2013.

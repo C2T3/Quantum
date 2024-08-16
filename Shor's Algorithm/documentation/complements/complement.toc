@@ -7,5 +7,5 @@
 \contentsline {section}{\numberline {D}Fractions continues}{15}{section.4}%
 \contentsline {section}{\numberline {E}Explication du pseudocode}{18}{section.5}%
 \contentsline {section}{\numberline {F}Version compilée de l'algorithme de Shor}{20}{section.6}%
-\contentsline {section}{Remerciements}{21}{section*.17}%
-\contentsline {section}{R\'ef\'erences}{22}{section*.18}%
+\contentsline {section}{Remerciements}{22}{section*.17}%
+\contentsline {section}{R\'ef\'erences}{23}{section*.18}%

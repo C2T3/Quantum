@@ -66,4 +66,30 @@ donnent un facteur trivial dans le cas où $a^{\frac{r}{2}} \equiv \pm 1 \text{ 
 Ces équations expliquent les conditions à la ligne 12 du pseudocode et nous donnent une chance de trouver un facteur non-trivial grâce au calcul du pgcd à la ligne 13.
 
 \subsubsection*{Cas où l'algorithme échoue}
-Il existe quelques façons pour qu'une itération de l'algorithme échoue. Cela se produit lors de la partie quantique de l'algorithme. D'abord, il se peut que le circuit de la recherche d'ordre n'est pas permis par D.4 d'avoir la vraie valeur de l'ordre de $a$. De ce fait, le reste du pseudocode ne peut pas marcher parce qu'on se base justement sur la supposition qu'on a obtenu le bon ordre. De plus, si les deux conditions de la ligne 12 ne sont pas respectées, le reste du pseudocode ne fonctionnera pas comme on vient de le voir mathématiquement. Peu importe le cas où l'algorithme échoue, le fait de prendre une autre valeur $a$ lui donne la possibilité de ne pas tomber dans ces cas d'échecs lors de la prochaine itération. On ne le montre pas ici par manque de temps, mais la probabilité de succès à chaque itération est plus grande que $\frac{1}{2}$ \cite{nielsen00}.
+Il existe quelques façons pour qu'une itération de l'algorithme échoue. Cela se produit lors de la partie quantique de l'algorithme. D'abord, il se peut que le circuit de la recherche d'ordre n'est pas permis par D.4 d'avoir la vraie valeur de l'ordre de $a$. De ce fait, le reste du pseudocode ne peut pas marcher parce qu'on se base justement sur la supposition qu'on a obtenu le bon ordre. De plus, si les deux conditions de la ligne 12 ne sont pas respectées, le reste du pseudocode ne fonctionnera pas comme on vient de le voir mathématiquement. Peu importe le cas où l'algorithme échoue, le fait de prendre une autre valeur $a$ lui donne la possibilité de ne pas tomber dans ces cas d'échecs lors de la prochaine itération. On ne le montre pas ici par manque de temps, mais la probabilité de succès à chaque itération est plus grande que $\frac{1}{2}$ \cite{nielsen00} \cite{Shor_1997}.
+
+\textit{- E.1} : Soient $p$ un nombre premier impair et $2^d$ la plus grande puissance de 2 qui divise $\phi(p^{\alpha})$. Alors, $2^d$ divise l'ordre d'un élément aléatoire dans $\mathbb{U}_{p^{\alpha}}$ avec une probabilité $\frac{1}{2}$.
+
+\begin{quote}
+    $p$ étant impair, on sait que $\phi(p^{\alpha}) = p^{\alpha - 1}(p-1)$ est pair. Ainsi, $d \geq 1$ forcément. Par le fait que $\mathbb{U}_{p^{\alpha}} = \ <g>$ est cyclique, tous ses éléments sont de la forme $g^k \text{ mod } p^{\alpha}$ pour $k \in \{1, ..., \phi(p^{\alpha})\}$. Soit $x = g^k \text{ mod } p^{\alpha}$ d'ordre $r$ pour un certain $k$.
+
+    Si $k$ est impair, $g^{kr} \equiv 1 \text{ mod } p^{\alpha} \implies \phi(p^{\alpha})|kr$. Sachant que $2^d|\phi(p^{\alpha})$, on conclue que $2^d|kr \implies 2^d|r$ puisque $k$ est impair.
+
+    Si $k$ est pair, $g^{k\frac{\phi(p^{\alpha})}{2}} \equiv 1^{\frac{k}{2}} \text{ mod } p^{\alpha} \equiv 1 \text{ mod } p^{\alpha}$. Donc, $r|\frac{\phi(p^{\alpha})}{2}$ et $2^d\nmid\frac{\phi(p^{\alpha})}{2}$ indiquent que $2^d \nmid r$.
+
+    Au final, on peut séparer $\mathbb{U}_{p_{\alpha}}$ en deux parties égales, une contenant les éléments dont $2^d$ divise leur ordre et l'autre contenant les éléments pour lesquels $2^d$ ne divise pas leur ordre. Ainsi, on a une probabilité $\frac{1}{2}$ de choisir un élément de $\mathbb{U}_{p^{\alpha}}$ où $2^d|r$. $\square$
+\end{quote}
+
+\textit{- E.2} : Soient $N = p_1^{\alpha_1}...p_k^{\alpha_k}$ un nombre composé impair et $x$ un élément d'ordre $r$ choisi aléatoirement depuis $\mathbb{U}_N$. Alors, $p$($r$ est pair et $x^{\frac{r}{2}} \not\equiv -1 \text{ mod } N) \geq 1 - \frac{1}{2^{k-1}}$.
+
+\begin{quote}
+    Par l'isomorphisme entre $\mathbb{U}_N$ et $\prod_j\mathbb{U}_{p_j^{\alpha_j}}$, choisir un élément $x$ d'ordre $r$ aléatoirement dans $\mathbb{U}_N$ revient à choisir $x_j \in \mathbb{U}_{p_j^{\alpha_j}}$ d'ordre $r_j$ aléatoirement où on impose que $x \equiv x_j \text{ mod } p_j^{\alpha_j} \ \forall j$. Ainsi, par B.10, $r$ correspond au ppcm des $r_j$ et donc $r_j|r \ \forall j$. On remarque que $p$($r$ est pair et $x^{\frac{r}{2}} \not\equiv -1 \text{ mod } N) = 1 \ - \ $$p$($r$ est impair ou $x^{\frac{r}{2}} \equiv -1 \text{ mod } N)$ et on calcule cette dernière probabilité afin de prouver l'affirmation.
+
+    Dans le cas où $r$ est impair, puisque $r_j|r$, les $r_j$ sont tous impairs aussi $\implies d_j = 0 \ \forall j$. Ainsi, pour que $r$ soit impair, il faut que la même puissance de $2$ divise tous les $r_j \implies$ par E.1 que $p$(impair) = $\left(\frac{1}{2}\right)^k = \frac{1}{2^k}$.
+
+    Dans le cas où $x^{\frac{r}{2}} \equiv -1 \text{ mod } N$ ($r$ est pair forcément), par le théorème des restes chinois, il faut que $x^{\frac{r}{2}} \equiv -1 \text{ mod } p_j^{\alpha_j} \ \forall j \implies r_j \nmid r$ car $\frac{r}{2}$ n'est pas un multiple de $r_j$. Tout de même, $r_j|r \implies d_j = d \ \forall j$. Par E.1, $p$($x^{\frac{r}{2}} \equiv -1 \text{ mod } N) = \frac{1}{2^k}$.
+
+    Au final, $1 \ - \ $$p$($r$ est impair ou $x^{\frac{r}{2}} \equiv -1 \text{ mod } N) = 1 - \left(\frac{1}{2^k} + \frac{1}{2^k}\right) = 1 - \frac{1}{2^{k-1}} \geq 1 - \frac{1}{2^{k-1}}$. $\square$ 
+
+    ***Je ne suis vraiment pas sûr de cette preuve.
+\end{quote}
