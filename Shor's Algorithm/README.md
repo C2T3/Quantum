@@ -46,7 +46,7 @@ This repository hosts such an implementation along with extended documentation.
 └───requirements.txt
 ```
 
-The folder `documentation` contains many other folders. First, `circuits` has some LaTex code that was used to build quantum circuits with Quantikz. Finally, `shor` and `complements` both contain LaTex code that describes the theoretical approach for Shor's algorithm. For the moment, this documentation is only written in French.
+The folder `documentation` contains many other folders. First, `circuits` has some LaTeX code that was used to build quantum circuits with Quantikz. Finally, `shor` and `complements` both contain LaTeX code that describes the theoretical approach for Shor's algorithm. For the moment, this documentation is only written in French.
 
 The folder `src` contains all the code we have written for Shor's algorithm. There are some notebooks in the folder `notebooks`, some Python files that together implement Shor's algorithm in `shors_algorithm` and material to test the implementation in `experiments`. The header of each Python file has a description of what it does.
 
